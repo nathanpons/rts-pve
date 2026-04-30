@@ -29,3 +29,14 @@ func _on_hit_area_body_entered(body: RigidBody2D) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func highlight(color: Color) -> void:
+	hit_area.modulate = color
+
+func dehighlight() -> void:
+	hit_area.modulate = selection_color
+
+func is_in_selection_area(min_pos: Vector2, max_pos: Vector2) -> bool:
+	var unit_position = hit_area.global_position
+	return min_pos.x < unit_position.x and unit_position.x < max_pos.x and \
+		   min_pos.y < unit_position.y and unit_position.y < max_pos.y
