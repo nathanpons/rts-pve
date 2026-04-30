@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc7fg1op1rff7"]
+[gd_scene format=3 uid="uid://dc7fg1op1rff7"]
 
 [ext_resource type="Script" uid="uid://wfyckfs263vi" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Bug Walk.png" id="2_g2els"]
@@ -49,16 +49,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_urp6f"]
 radius = 8.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1158380441]
 script = ExtResource("1_g2els")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=891997380]
 position = Vector2(1, -8)
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"idle"
 autoplay = "idle"
 frame_progress = 0.42479166
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655818767]
 position = Vector2(1, -8)
 shape = SubResource("CircleShape2D_urp6f")
