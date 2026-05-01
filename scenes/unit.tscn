@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://37u0tkfl12q8"]
+
+[ext_resource type="Script" uid="uid://5rb1w5gx800f" path="res://scripts/unit.gd" id="1_k673f"]
+[ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
+
+[sub_resource type="Animation" id="Animation_gic7v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tb304"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_ruro2"]
+resource_name = "walkin"
+length = 0.75
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143, 0.5714286),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8hdl"]
+_data = {
+&"RESET": SubResource("Animation_gic7v"),
+&"idle": SubResource("Animation_tb304"),
+&"walking": SubResource("Animation_ruro2")
+}
+
+[node name="Unit" type="CharacterBody2D" unique_id=112693940]
+script = ExtResource("1_k673f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605498158]
+shape = SubResource("CircleShape2D_lf63s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1962418961]
+root_node = NodePath("../Sprite2D")
+libraries/ = SubResource("AnimationLibrary_e8hdl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2130287803]
+texture = ExtResource("2_1jvru")
+hframes = 5
