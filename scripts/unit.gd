@@ -13,6 +13,8 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * speed
 	move_and_collide(velocity * delta)
 	if velocity != Vector2.ZERO:
+		var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
+		rotation = angle
 		$AnimationPlayer.play("walking")
 	else:
 		$AnimationPlayer.play("idle")
