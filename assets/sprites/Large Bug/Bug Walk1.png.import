@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drfcxmyaseavi"
-path="res://.godot/imported/Bug Walk.png-329b657296b8cd6207e786860c62684e.ctex"
+uid="uid://bgyjrenatjtlu"
+path="res://.godot/imported/Bug Walk1.png-822489abe3624adc9178f2a8fc9025de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Bug Walk.png"
-dest_files=["res://.godot/imported/Bug Walk.png-329b657296b8cd6207e786860c62684e.ctex"]
+source_file="res://assets/sprites/Large Bug/Bug Walk1.png"
+dest_files=["res://.godot/imported/Bug Walk1.png-822489abe3624adc9178f2a8fc9025de.ctex"]
 
 [params]
 
