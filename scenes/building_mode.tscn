@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://f5u0u2pgr2yc"]
+
+[ext_resource type="Script" uid="uid://dv1shufpe8fja" path="res://scripts/building_mode.gd" id="1_3rj5v"]
+
+[node name="BuildingMode" type="Node2D" unique_id=989508457]
+script = ExtResource("1_3rj5v")
