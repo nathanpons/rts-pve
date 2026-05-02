@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_gic7v"]
 length = 0.001
@@ -48,7 +49,12 @@ _data = {
 &"walking": SubResource("Animation_ruro2")
 }
 
-[node name="Unit" type="CharacterBody2D" unique_id=112693940]
+[sub_resource type="CircleShape2D" id="CircleShape2D_k673f"]
+radius = 14.0
+
+[node name="Unit" type="CharacterBody2D" unique_id=112693940 groups=["units"]]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_k673f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1605498158]
@@ -61,3 +67,10 @@ libraries/ = SubResource("AnimationLibrary_e8hdl")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2130287803]
 texture = ExtResource("2_1jvru")
 hframes = 5
+
+[node name="Detect" type="Area2D" parent="." unique_id=712394802]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=1919862725]
+shape = SubResource("CircleShape2D_k673f")
