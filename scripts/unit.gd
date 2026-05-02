@@ -7,7 +7,7 @@ var avoid_weight = 0.1
 var target_radius = 20
 var selected_color = Color(0, 1, 1, 0.25)
 var selected_circle = CollisionShape2D.new()
-var selected_circle_radius = 15
+var selected_circle_radius = 10
 var is_idle = true
 var is_selected = false:
 	set = set_selected
@@ -67,4 +67,4 @@ func _physics_process(delta: float) -> void:
 
 func _draw() -> void:
 	if is_selected:
-		draw_circle(Vector2.ZERO, selected_circle_radius, selected_color, false, 1.0)
+		draw_circle(Vector2.DOWN, selected_circle_radius, selected_color, false, 1.0)
