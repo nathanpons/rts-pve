@@ -53,6 +53,7 @@ _data = {
 radius = 14.0
 
 [node name="Unit" type="CharacterBody2D" unique_id=112693940 groups=["units"]]
+z_index = 1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_k673f")

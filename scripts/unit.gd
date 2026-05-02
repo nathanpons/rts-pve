@@ -5,19 +5,22 @@ var rng = RandomNumberGenerator.new()
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var target_radius = 20
+var selected_color = Color(0, 1, 1, 0.25)
+var selected_circle = CollisionShape2D.new()
+var selected_circle_radius = 15
 var is_idle = true
-var selected = false:
+var is_selected = false:
 	set = set_selected
 var target = null:
 	set = set_target
 
 func set_selected(value: bool):
-	selected = value
-	if selected:
+	is_selected = value
+	queue_redraw()
+	if is_selected:
 		pass
 	else:
 		pass
-
 func set_target(value):
 	target = value
 
@@ -60,3 +63,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimationPlayer.play("idle")
 		# random_movement()
+
+
+func _draw() -> void:
+	if is_selected:
+		draw_circle(Vector2.ZERO, selected_circle_radius, selected_color, false, 1.0)
