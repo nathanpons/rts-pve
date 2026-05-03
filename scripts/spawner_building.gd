@@ -4,12 +4,12 @@ extends Node2D
 var loaded_unit: PackedScene
 
 func _ready() -> void:
-	loaded_unit = load(unit_scene_path)
+    loaded_unit = load(unit_scene_path)
 
 func _process(delta: float) -> void:
-	pass
+    pass
 
 func _on_spawn_timer_timeout() -> void:
-	var new_unit = loaded_unit.instantiate()
-	get_tree().root.add_child(new_unit)
-	new_unit.global_position = $SpawnPosition
+    var new_unit = loaded_unit.instantiate()
+    get_tree().root.add_child(new_unit)
+    new_unit.global_position = $SpawnPosition.global_position
