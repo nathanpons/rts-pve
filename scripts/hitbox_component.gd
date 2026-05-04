@@ -1,4 +1,4 @@
 extends Area2D
-class_name hitbox_component
+class_name HitboxComponent
 
-@export var health_component: HealthComponent
+@export var health_component : HealthComponent
