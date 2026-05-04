@@ -14,6 +14,7 @@ var is_selected = false:
 var target = null:
 	set = set_target
 
+
 func set_selected(value: bool):
 	is_selected = value
 	queue_redraw()
@@ -21,8 +22,11 @@ func set_selected(value: bool):
 		pass
 	else:
 		pass
+
+
 func set_target(value):
 	target = value
+
 
 func avoid():
 	var result = Vector2.ZERO
@@ -34,9 +38,11 @@ func avoid():
 
 	return result.normalized()
 
+
 # func _input(event: InputEvent) -> void:
 # 	if event.is_action_pressed("set_target"):
 # 		target = get_global_mouse_position()
+
 
 # func random_movement():
 # 	var rand_move_timer = randf_range(5, 25)
@@ -45,6 +51,7 @@ func avoid():
 # 		var rand_vector2 := Vector2(rng.randf_range(-5, 5), rng.randf_range(-5, 5))
 # 		var new_pos = position + rand_vector2
 # 		self.set_target(rand_vector2)
+
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO

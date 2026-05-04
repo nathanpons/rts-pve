@@ -6,8 +6,10 @@ var building_area_color_error = Color.RED
 var query_rect = RectangleShape2D.new()
 var can_build = []
 
+
 func _ready() -> void:
 	pass
+
 
 func _process(delta: float) -> void:
 	building_area.position = get_global_mouse_position() - building_area.size / 2
@@ -19,6 +21,7 @@ func _process(delta: float) -> void:
 	q.transform = Transform2D(0, get_global_mouse_position())
 	can_build = space.intersect_shape(q)
 	queue_redraw()
+
 
 func _draw() -> void:
 	if can_build.size() == 0:

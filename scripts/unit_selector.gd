@@ -6,6 +6,7 @@ var selection_rect = RectangleShape2D.new()
 var selection_color := Color.AQUA
 var selected = []
 
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
