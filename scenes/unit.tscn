@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://5rb1w5gx800f" path="res://scripts/unit.gd" id="1_k673f"]
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
+[ext_resource type="PackedScene" uid="uid://b61yr77qt1fxx" path="res://scenes/health_component.tscn" id="3_gic7v"]
+[ext_resource type="PackedScene" uid="uid://853cp26fn0gi" path="res://scenes/hitbox_component.tscn" id="4_tb304"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
 radius = 6.0
@@ -75,3 +77,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=1919862725]
 shape = SubResource("CircleShape2D_k673f")
+
+[node name="HealthComponent" parent="." unique_id=1284997372 instance=ExtResource("3_gic7v")]
+
+[node name="HitboxComponent" parent="." unique_id=709254845 instance=ExtResource("4_tb304")]
