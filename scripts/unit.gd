@@ -1,6 +1,15 @@
 extends CharacterBody2D
 
-@export var speed = 100
+enum Faction {
+	BUG, # Bug
+	BOT, # WOBOT 🤖
+	MAGIC, # Dryads, wisps, ent, elemental. Prob no human forms
+	NEUTRAL, # Everything else
+}
+
+@export var speed: int = 100
+@export var faction: Faction
+@export var team: int = 0
 var rng = RandomNumberGenerator.new()
 var av = Vector2.ZERO
 var avoid_weight = 0.1
@@ -51,6 +60,10 @@ func avoid():
 # 		var rand_vector2 := Vector2(rng.randf_range(-5, 5), rng.randf_range(-5, 5))
 # 		var new_pos = position + rand_vector2
 # 		self.set_target(rand_vector2)
+
+
+func _on_timer_timeout() -> void:
+	pass
 
 
 func _physics_process(delta: float) -> void:
