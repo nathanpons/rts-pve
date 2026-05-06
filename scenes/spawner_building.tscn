@@ -22,7 +22,7 @@ shape = SubResource("RectangleShape2D_1rbfn")
 disabled = true
 
 [node name="SpawnPosition" type="Node2D" parent="." unique_id=1725307982]
-position = Vector2(0, 24)
+position = Vector2(0, -8)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=462798385]
 autostart = true
