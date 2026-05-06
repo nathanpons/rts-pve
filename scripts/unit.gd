@@ -3,14 +3,14 @@ extends CharacterBody2D
 enum Faction {
 	BUG, # Bug
 	BOT, # WOBOT 🤖
-	MAGIC, # Dryads, wisps, ent, elemental. Prob no human forms
+	MYSTIC, # Dryads, wisps, ent, elemental. Prob no human forms
 	NEUTRAL, # Everything else
 }
 
 @export var speed: int = 100
 @export var faction: Faction
 @export var team: int = 0
-var rng = RandomNumberGenerator.new()
+@onready var idle_movement_timer: Timer = $IdleMovementTimer
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var target_radius = 20
@@ -22,6 +22,10 @@ var is_selected = false:
 	set = set_selected
 var target = null:
 	set = set_target
+
+
+func _ready() -> void:
+	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
 
 
 func set_selected(value: bool):
@@ -53,17 +57,32 @@ func avoid():
 # 		target = get_global_mouse_position()
 
 
-# func random_movement():
-# 	var rand_move_timer = randf_range(5, 25)
-# 	await get_tree().create_timer(rand_move_timer).timeout
-# 	if velocity == Vector2.ZERO:
-# 		var rand_vector2 := Vector2(rng.randf_range(-5, 5), rng.randf_range(-5, 5))
-# 		var new_pos = position + rand_vector2
-# 		self.set_target(rand_vector2)
+# Idle Movement Workflow
+func idle_movement() -> void:
+	print("Starting idle movement for unit %s" % self.name)
+	idle_movement_timer.wait_time = randf_range(5.0, 10.0)
+	idle_movement_timer.start()
 
 
-func _on_timer_timeout() -> void:
-	pass
+func get_random_nearby_pos() -> Vector2:
+	# Get a random vector in the range of -5 to 5
+	var rand_vector2 = Vector2(randf_range(-50.0, 50.0), randf_range(-50.0, 50.0))
+	var new_pos = position + rand_vector2
+	return new_pos
+
+
+func move_to_pos_if_idle(pos: Vector2) -> void:
+	if not is_instance_valid(self):
+		return 
+	if target == null:
+		target = pos
+
+
+func _on_idle_movement_timeout() -> void:
+	move_to_pos_if_idle(get_random_nearby_pos())
+
+
+# End Idle Movement workflow
 
 
 func _physics_process(delta: float) -> void:
@@ -82,7 +101,8 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.play("walking")
 	else:
 		$AnimationPlayer.play("idle")
-		# random_movement()
+		if idle_movement_timer.is_stopped():
+			idle_movement()
 
 
 func _draw() -> void:

@@ -88,6 +88,6 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=585415456]
 shape = SubResource("CircleShape2D_gic7v")
 
-[node name="Timer" type="Timer" parent="." unique_id=538802302]
+[node name="IdleMovementTimer" type="Timer" parent="." unique_id=538802302]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="IdleMovementTimer" to="." method="_on_timer_timeout"]
