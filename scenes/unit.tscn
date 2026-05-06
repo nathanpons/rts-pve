@@ -54,6 +54,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_k673f"]
 radius = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gic7v"]
+
 [node name="Unit" type="CharacterBody2D" unique_id=112693940 groups=["units"]]
 z_index = 1
 collision_layer = 6
@@ -80,4 +82,12 @@ shape = SubResource("CircleShape2D_k673f")
 
 [node name="HealthComponent" parent="." unique_id=1284997372 instance=ExtResource("3_gic7v")]
 
-[node name="HitboxComponent" parent="." unique_id=709254845 instance=ExtResource("4_tb304")]
+[node name="HitboxComponent" parent="." unique_id=709254845 node_paths=PackedStringArray("health_component") instance=ExtResource("4_tb304")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=585415456]
+shape = SubResource("CircleShape2D_gic7v")
+
+[node name="Timer" type="Timer" parent="." unique_id=538802302]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
