@@ -59,7 +59,6 @@ func avoid():
 
 # Idle Movement Workflow
 func idle_movement() -> void:
-	print("Starting idle movement for unit %s" % self.name)
 	idle_movement_timer.wait_time = randf_range(5.0, 10.0)
 	idle_movement_timer.start()
 
@@ -80,6 +79,12 @@ func move_to_pos_if_idle(pos: Vector2) -> void:
 
 func _on_idle_movement_timeout() -> void:
 	move_to_pos_if_idle(get_random_nearby_pos())
+	idle_movement_timer.stop()
+
+
+func cancel_idle_functions() -> void:
+	# Cancel Idle Movement
+	idle_movement_timer.stop()
 
 
 # End Idle Movement workflow
@@ -88,6 +93,7 @@ func _on_idle_movement_timeout() -> void:
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.ZERO
 	if target != null:
+		cancel_idle_functions()
 		velocity = position.direction_to(target)
 		if position.distance_to(target) < target_radius:
 			target = null
@@ -102,6 +108,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimationPlayer.play("idle")
 		if idle_movement_timer.is_stopped():
+			print("Starting idle movement for unit %s" % self.name)
 			idle_movement()
 
 
