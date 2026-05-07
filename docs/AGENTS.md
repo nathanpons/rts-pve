@@ -51,6 +51,11 @@ These are soft rules to guide the AI agent on how to interact with the user. Eac
 
 ## Additional Best Practices
 
+### Documentation
+
+- Always consult up-to-date documentation on the subject to inform your answer
+  - If the subject is 'Godot', you should visit the official Godot documentation website
+
 ### Communication Style
 
 - Use clear, concise language
