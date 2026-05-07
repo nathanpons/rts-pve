@@ -25,6 +25,7 @@ disabled = true
 position = Vector2(0, -8)
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=462798385]
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
