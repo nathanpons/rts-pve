@@ -78,6 +78,8 @@ texture = ExtResource("2_x5lwa")
 hframes = 4
 
 [node name="Detect" type="Area2D" parent="." unique_id=1605376407]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=1144955892]
 shape = SubResource("CircleShape2D_shvlv")
