@@ -1,5 +1,5 @@
-extends CharacterBody2D
 class_name Unit
+extends CharacterBody2D
 
 enum Faction {
 	BUG, # Bug
@@ -13,7 +13,6 @@ enum Faction {
 @export var team: int = 0
 @export var health_component: HealthComponent
 @export var hitbox_component: HitboxComponent
-@onready var idle_movement_timer: Timer = $IdleMovementTimer
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var target_radius = 20
@@ -25,10 +24,38 @@ var is_selected = false:
 	set = set_selected
 var target = null:
 	set = set_target
+@onready var idle_movement_timer: Timer = $IdleMovementTimer
 
 
 func _ready() -> void:
 	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
+
+
+func _physics_process(delta: float) -> void:
+	velocity = Vector2.ZERO
+	if target != null:
+		cancel_idle_methods()
+		velocity = position.direction_to(target)
+		if position.distance_to(target) < target_radius:
+			target = null
+
+	av = avoid()
+	velocity = (velocity + av * avoid_weight).normalized() * speed
+	move_and_collide(velocity * delta)
+	if velocity != Vector2.ZERO:
+		var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
+		rotation = angle
+		$AnimationPlayer.play("walking")
+	else:
+		$AnimationPlayer.play("idle")
+		if idle_movement_timer.is_stopped():
+			print("Starting idle movement for unit %s" % self.name)
+			idle_movement()
+
+
+func _draw() -> void:
+	if is_selected:
+		draw_circle(Vector2.DOWN, selected_circle_radius, selected_color, false, 1.0)
 
 
 func set_selected(value: bool):
@@ -85,36 +112,9 @@ func _on_idle_movement_timeout() -> void:
 	idle_movement_timer.stop()
 
 
-func cancel_idle_functions() -> void:
+func cancel_idle_methods() -> void:
 	# Cancel Idle Movement
 	idle_movement_timer.stop()
 
 
 # End Idle Movement workflow
-
-
-func _physics_process(delta: float) -> void:
-	velocity = Vector2.ZERO
-	if target != null:
-		cancel_idle_functions()
-		velocity = position.direction_to(target)
-		if position.distance_to(target) < target_radius:
-			target = null
-
-	av = avoid()
-	velocity = (velocity + av * avoid_weight).normalized() * speed
-	move_and_collide(velocity * delta)
-	if velocity != Vector2.ZERO:
-		var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
-		rotation = angle
-		$AnimationPlayer.play("walking")
-	else:
-		$AnimationPlayer.play("idle")
-		if idle_movement_timer.is_stopped():
-			print("Starting idle movement for unit %s" % self.name)
-			idle_movement()
-
-
-func _draw() -> void:
-	if is_selected:
-		draw_circle(Vector2.DOWN, selected_circle_radius, selected_color, false, 1.0)
