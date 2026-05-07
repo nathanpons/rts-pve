@@ -1,11 +1,11 @@
 extends Node2D
 
-@export var unit_scene_path = "res://scenes/ant_unit.tscn"
+@export var unit_scene_uid = "uid://p52nn01mvgw7" # Ant unit UID
 var loaded_unit: PackedScene
 var units_spawned: int = 0
 
 func _ready() -> void:
-	loaded_unit = load(unit_scene_path)
+	loaded_unit = load(unit_scene_uid)
 
 
 func _process(delta: float) -> void:
