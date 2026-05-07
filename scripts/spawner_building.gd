@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var unit_scene_path = "res://scenes/unit.tscn"
+@export var unit_scene_path = "res://scenes/ant_unit.tscn"
 var loaded_unit: PackedScene
 var units_spawned: int = 0
 
