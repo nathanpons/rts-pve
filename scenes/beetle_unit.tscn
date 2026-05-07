@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://br8srhi0spst7"]
+
+[ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="1_j44tx"]
+[ext_resource type="Script" uid="uid://ca0estea0i5i1" path="res://beetle_unit.gd" id="2_jgrpl"]
+
+[node name="BeetleUnit" unique_id=112693940 node_paths=PackedStringArray("health_component", "hitbox_component") instance=ExtResource("1_j44tx")]
+script = ExtResource("2_jgrpl")
+health_component = NodePath("HealthComponent")
+hitbox_component = NodePath("HitboxComponent")
