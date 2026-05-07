@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Unit
 
 enum Faction {
 	BUG, # Bug
@@ -10,6 +11,8 @@ enum Faction {
 @export var speed: int = 100
 @export var faction: Faction
 @export var team: int = 0
+@export var health_component: HealthComponent
+@export var hitbox_component: HitboxComponent
 @onready var idle_movement_timer: Timer = $IdleMovementTimer
 var av = Vector2.ZERO
 var avoid_weight = 0.1
