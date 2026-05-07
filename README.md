@@ -1,6 +1,6 @@
 # 2D PVE RTS
 
-This project is a 2D real-time strategy game (RTS) developed using Godot. The game features units that can move, attack, and defend against enemies. The game will have 3+ factions including bugs, bots, and mystics (wisps, shambling mound, fungal-based, elementals, etc. No humanoids).
+This project is a 2D real-time strategy game (RTS) developed using Godot. The game will have 3+ factions including bugs, bots, and mystics (e.g. wisps, shambling mound, fungal-based, elementals, etc. No humanoids).
 
 The main focus of the game will be a solo (maybe co-op) experience against ai controlled enemies of any faction. The game will be a Player-VS-Environment (PVE) experience with rogue-lite elements.
 
