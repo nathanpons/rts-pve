@@ -80,13 +80,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=1919862725]
 shape = SubResource("CircleShape2D_k673f")
 
-[node name="HealthComponent" parent="." unique_id=1284997372 instance=ExtResource("3_gic7v")]
-
 [node name="HitboxComponent" parent="." unique_id=709254845 node_paths=PackedStringArray("health_component") instance=ExtResource("4_tb304")]
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=585415456]
 shape = SubResource("CircleShape2D_gic7v")
+
+[node name="HealthComponent" parent="." unique_id=1284997372 instance=ExtResource("3_gic7v")]
 
 [node name="IdleMovementTimer" type="Timer" parent="." unique_id=538802302]
 
