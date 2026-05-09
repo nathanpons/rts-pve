@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://crwo8o8anfffe"]
+
+[ext_resource type="Script" uid="uid://du8enhq2ow10b" path="res://scripts/ant_unit.gd" id="1_fgf7j"]
+[ext_resource type="Texture2D" uid="uid://b3182esdchrja" path="res://assets/sprites/Ants/Ant-walk-cycle.png" id="2_gu38w"]
+[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/hitbox_component.gd" id="3_aeva0"]
+[ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/health_component.gd" id="4_q8f8m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww4lk"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_2f6fj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x5lwa"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_yl545"]
+resource_name = "walking"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2f6fj"]
+_data = {
+&"RESET": SubResource("Animation_2f6fj"),
+&"idle": SubResource("Animation_x5lwa"),
+&"walking": SubResource("Animation_yl545")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shvlv"]
+radius = 14.035668
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2f6fj"]
+radius = 10.049875
+
+[node name="AntUnitOld" type="CharacterBody2D" unique_id=1256052603 node_paths=PackedStringArray("health_component", "hitbox_component")]
+collision_layer = 6
+collision_mask = 7
+script = ExtResource("1_fgf7j")
+speed = 200
+health_component = NodePath("HealthComponent")
+hitbox_component = NodePath("HitboxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=798223745]
+shape = SubResource("CircleShape2D_ww4lk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=341147389]
+libraries/ = SubResource("AnimationLibrary_2f6fj")
+autoplay = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1093664918]
+texture = ExtResource("2_gu38w")
+hframes = 4
+
+[node name="Detect" type="Area2D" parent="." unique_id=1605376407]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detect" unique_id=1144955892]
+shape = SubResource("CircleShape2D_shvlv")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=1406896271 node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_aeva0")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bc0sdc4urxpe1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1106583034]
+shape = SubResource("CircleShape2D_2f6fj")
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=420248734]
+script = ExtResource("4_q8f8m")
+metadata/_custom_type_script = "uid://ct8pynfb0pqkn"
+
+[node name="IdleMovementTimer" type="Timer" parent="." unique_id=2003864513]
