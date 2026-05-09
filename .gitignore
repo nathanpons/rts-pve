@@ -24,3 +24,6 @@ mono_crash.*.json
 
 # Obsidian
 .obsidian/
+
+# Environment Variables
+.env*
