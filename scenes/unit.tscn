@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
 [ext_resource type="PackedScene" uid="uid://b61yr77qt1fxx" path="res://scenes/health_component.tscn" id="3_gic7v"]
 [ext_resource type="PackedScene" uid="uid://853cp26fn0gi" path="res://scenes/hitbox_component.tscn" id="4_tb304"]
+[ext_resource type="Script" uid="uid://dah6ur2ra4seh" path="res://scripts/melee_attack_component.gd" id="5_tb304"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
 radius = 6.0
@@ -56,6 +57,9 @@ radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gic7v"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ruro2"]
+radius = 15.0
+
 [node name="Unit" type="CharacterBody2D" unique_id=112693940 groups=["units"]]
 z_index = 1
 collision_layer = 6
@@ -89,5 +93,13 @@ shape = SubResource("CircleShape2D_gic7v")
 [node name="HealthComponent" parent="." unique_id=1284997372 instance=ExtResource("3_gic7v")]
 
 [node name="IdleMovementTimer" type="Timer" parent="." unique_id=538802302]
+
+[node name="MeleeAttackComponent" type="Area2D" parent="." unique_id=1276306829]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("5_tb304")
+
+[node name="AttackShape" type="CollisionShape2D" parent="MeleeAttackComponent" unique_id=312058845]
+shape = SubResource("CircleShape2D_ruro2")
 
 [connection signal="timeout" from="IdleMovementTimer" to="." method="_on_timer_timeout"]
