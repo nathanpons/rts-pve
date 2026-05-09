@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://f5u0u2pgr2yc" path="res://scenes/building_mode.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://desym5ki58atd" path="res://scenes/spawner_building.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://p52nn01mvgw7" path="res://scenes/ant_unit.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://br8srhi0spst7" path="res://scenes/beetle_unit.tscn" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
 texture = ExtResource("3_lnu2h")
@@ -822,3 +823,6 @@ position = Vector2(-47, -56)
 
 [node name="AntUnit" parent="." unique_id=1256052603 instance=ExtResource("7_u5sy4")]
 position = Vector2(-32, 24)
+
+[node name="BeetleUnit" parent="." unique_id=1607506571 instance=ExtResource("8_gee14")]
+position = Vector2(38, 40)
