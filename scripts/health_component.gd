@@ -11,7 +11,7 @@ func _ready() -> void:
 
 func take_damage(damage_amount: float):
 	health -= damage_amount
+	print("Health: " + str(self.health))
 
 	if health <= 0:
 		get_parent().queue_free()
-
