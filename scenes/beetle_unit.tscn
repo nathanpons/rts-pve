@@ -2,8 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="1_j44tx"]
 [ext_resource type="Script" uid="uid://ca0estea0i5i1" path="res://beetle_unit.gd" id="2_jgrpl"]
+[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/components/hitbox_component.gd" id="3_4e8lf"]
+[ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/components/health_component.gd" id="4_wdtm2"]
+[ext_resource type="Script" uid="uid://dah6ur2ra4seh" path="res://scripts/components/melee_attack_component.gd" id="5_dd7mi"]
 
 [node name="BeetleUnit" unique_id=112693940 node_paths=PackedStringArray("health_component", "hitbox_component") instance=ExtResource("1_j44tx")]
 script = ExtResource("2_jgrpl")
 health_component = NodePath("HealthComponent")
 hitbox_component = NodePath("HitboxComponent")
+
+[node name="HitboxComponent" parent="." index="4" unique_id=709254845]
+script = ExtResource("3_4e8lf")
+
+[node name="HealthComponent" parent="." index="5" unique_id=1284997372]
+script = ExtResource("4_wdtm2")
+
+[node name="MeleeAttackComponent" parent="." index="7" unique_id=1276306829]
+script = ExtResource("5_dd7mi")
