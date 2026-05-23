@@ -9,8 +9,8 @@ func _ready() -> void:
 	health = MAX_HEALTH
 
 
-func damage(attack: Attack):
-	health -= attack.attack_damage
+func take_damage(damage_amount: float):
+	health -= damage_amount
 
 	if health <= 0:
 		get_parent().queue_free()
