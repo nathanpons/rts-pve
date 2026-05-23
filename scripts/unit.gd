@@ -13,6 +13,7 @@ enum Faction {
 @export var team: int = 0
 @export var health_component: HealthComponent
 @export var hitbox_component: HitboxComponent
+@export var attack_component: Node2D
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var target_radius = 20
