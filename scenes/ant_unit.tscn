@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://p52nn01mvgw7"]
 
 [ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="1_ww4lk"]
+[ext_resource type="Script" uid="uid://du8enhq2ow10b" path="res://scripts/ant_unit.gd" id="2_shvlv"]
 [ext_resource type="Texture2D" uid="uid://b3182esdchrja" path="res://assets/sprites/Ants/Ant-walk-cycle.png" id="2_x5lwa"]
 
 [sub_resource type="Animation" id="Animation_shvlv"]
@@ -47,6 +48,7 @@ _data = {
 }
 
 [node name="AntUnit" unique_id=112693940 instance=ExtResource("1_ww4lk")]
+script = ExtResource("2_shvlv")
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=1962418961]
 libraries/ = SubResource("AnimationLibrary_2f6fj")
