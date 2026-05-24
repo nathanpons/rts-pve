@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://du8enhq2ow10b" path="res://scripts/ant_unit.gd" id="1_fgf7j"]
 [ext_resource type="Texture2D" uid="uid://b3182esdchrja" path="res://assets/sprites/Ants/Ant-walk-cycle.png" id="2_gu38w"]
-[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/hitbox_component.gd" id="3_aeva0"]
-[ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/health_component.gd" id="4_q8f8m"]
+[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/components/hitbox_component.gd" id="3_aeva0"]
+[ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/components/health_component.gd" id="4_q8f8m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ww4lk"]
 radius = 6.0

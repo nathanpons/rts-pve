@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://5rb1w5gx800f" path="res://scripts/unit.gd" id="1_k673f"]
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
-[ext_resource type="PackedScene" path="res://scenes/health_component.tscn" id="3_gic7v"]
+[ext_resource type="PackedScene" uid="uid://b61yr77qt1fxx" path="res://scenes/components/health_component.tscn" id="3_gic7v"]
 [ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/components/hitbox_component.gd" id="4_ruro2"]
-[ext_resource type="PackedScene" path="res://scenes/hitbox_component.tscn" id="4_tb304"]
+[ext_resource type="PackedScene" uid="uid://853cp26fn0gi" path="res://scenes/components/hitbox_component.tscn" id="4_tb304"]
 [ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/components/health_component.gd" id="6_e8hdl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
