@@ -4,8 +4,8 @@ extends Area2D
 @export var health_component : HealthComponent
 
 func _ready() -> void:
-	connect("mouse_entered", take_damage)
+	pass
 
-func take_damage():
-	print(self.name + " mouse entered!")
-	health_component.take_damage(10.0)
+func take_damage(attack_data: Attack):
+	print(self.name + " area entered!")
+	health_component.take_damage(attack_data.attack_damage)
