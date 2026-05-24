@@ -30,6 +30,7 @@ var target = null:
 
 func _ready() -> void:
 	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
+	hitbox_component.connect("attack_started", _on_attack_received)
 
 
 func _physics_process(delta: float) -> void:
@@ -112,6 +113,8 @@ func _on_idle_movement_timeout() -> void:
 	move_to_pos_if_idle(get_random_nearby_pos())
 	idle_movement_timer.stop()
 
+func _on_attack_received() -> void:
+	health_component.take_damage(10)
 
 func cancel_idle_methods() -> void:
 	# Cancel Idle Movement
