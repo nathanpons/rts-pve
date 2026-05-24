@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b2f1bwhadmj54"]
+
+[ext_resource type="Script" uid="uid://dah6ur2ra4seh" path="res://scripts/components/melee_attack_component.gd" id="1_d4kwg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nqyve"]
+
+[node name="MeleeAttackComponent" type="Area2D" unique_id=408482409]
+script = ExtResource("1_d4kwg")
+
+[node name="AttackShape" type="CollisionShape2D" parent="." unique_id=1362810769]
+light_mask = 8
+visibility_layer = 8
+shape = SubResource("CircleShape2D_nqyve")
