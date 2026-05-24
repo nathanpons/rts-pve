@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://853cp26fn0gi"]
 
-[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/hitbox_component.gd" id="1_0rji1"]
+[ext_resource type="Script" uid="uid://bc0sdc4urxpe1" path="res://scripts/components/hitbox_component.gd" id="1_0rji1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_okvui"]
 
 [node name="HitboxComponent" type="Area2D" unique_id=709254845]
 script = ExtResource("1_0rji1")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="." unique_id=1166107261]
+shape = SubResource("CircleShape2D_okvui")
