@@ -8,6 +8,7 @@ size = Vector2(18.5, 15.25)
 
 [node name="SpawnerBuilding" type="Node2D" unique_id=537822320]
 script = ExtResource("1_s7gsd")
+spawn_cooldown = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=822111430]
 texture = ExtResource("2_s7gsd")
