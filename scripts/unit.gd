@@ -30,7 +30,6 @@ var target = null:
 
 func _ready() -> void:
 	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
-	hitbox_component.connect("attack_started", _on_attack_received)
 
 
 func _physics_process(delta: float) -> void:
