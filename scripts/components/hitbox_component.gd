@@ -6,6 +6,9 @@ extends Area2D
 func _ready() -> void:
 	pass
 
-func take_damage(attack_data: Attack):
+func take_damage(attack_data):
 	print(self.name + " area entered!")
-	health_component.take_damage(attack_data.attack_damage)
+	if is_instance_valid(health_component):
+		health_component.take_damage(attack_data)
+	else:
+		print("Health component not found.")
