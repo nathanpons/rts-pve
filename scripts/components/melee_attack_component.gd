@@ -4,7 +4,7 @@ extends Node2D
 signal attack_started(attack, target)
 
 @export var attack_damage: int = 10
-@export var attack_range: float = 30.0
+@export var attack_range: float = 20.0
 @export var attack_cooldown: float = 1.0
 @export var is_debug: bool = false
 
@@ -34,19 +34,19 @@ func _ready() -> void:
 	else:
 		print("Could not find attack_shape.")
 
-func attack() -> void:
-	var current_time = Time.get_ticks_usec() / 1000.0
 
-	if current_time - _last_attack_time < attack_cooldown:
-		return
+func _on_body_entered(body: Node2D):
+	if (!possible_targets.has(body)):
+		possible_targets.append(body)
+		set_target()
+		print("Possible target added: " + str(possible_targets))
 
-	_last_attack_time = current_time
 
-	# Check if target is valid and in range
-	if target == null:
-		return
-	
-	_perform_melee_attack(target)
+func _on_body_exited(body: Node2D):
+	if (possible_targets.has(body)):
+		possible_targets.erase(body)
+		set_target()
+		print("Possible target removed: " + str(possible_targets))
 
 
 func _perform_melee_attack(target_node: Unit) -> void:
@@ -59,11 +59,23 @@ func _perform_melee_attack(target_node: Unit) -> void:
 func _on_attack_timeout() -> void:
 	if _attack_timer:
 		_attack_timer.wait_time = attack_cooldown
+		attack()
 		_attack_timer.start()
 
 
-func set_target(node: Node) -> void:
-	target = node
+func attack() -> void:
+	# Check if target is valid and in range
+	if target == null:
+		return
+	
+	_perform_melee_attack(target)
+
+
+func set_target() -> void:
+	if (!possible_targets.is_empty()):
+		target = possible_targets[0]
+		print("Target set to: " + str(target))
+		attack()
 
 
 func clear_target() -> void:
