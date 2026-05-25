@@ -32,10 +32,10 @@ func _ready() -> void:
 		print("Could not find attack_shape.")
 
 
-func _on_body_entered(body: Node2D):
+func _on_area_entered(area: Area2D) -> void:
 	# Add target to possible targets
-	if (!possible_targets.has(body)):
-		possible_targets.append(body)
+	if (!possible_targets.has(area)):
+		possible_targets.append(area)
 
 		# Check if on separate teams
 		
@@ -45,9 +45,9 @@ func _on_body_entered(body: Node2D):
 		print("Possible target added: " + str(possible_targets))
 
 
-func _on_body_exited(body: Node2D):
-	if (possible_targets.has(body)):
-		possible_targets.erase(body)
+func _on_area_exited(area: Area2D) -> void:
+	if (possible_targets.has(area)):
+		possible_targets.erase(area)
 		set_target()
 		print("Possible target removed: " + str(possible_targets))
 
