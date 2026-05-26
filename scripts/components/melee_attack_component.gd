@@ -59,13 +59,13 @@ func _on_attack_timeout() -> void:
 		_attack_timer.start()
 
 
-func _perform_melee_attack(target_node: Unit) -> void:
-	if target_node:
+func _perform_melee_attack(target_area: Area2D) -> void:
+	if target_area:
 		var attack_data = 10.0
-		var target_hitbox = target.get_node("HitboxComponent")
-		if is_instance_valid(target_hitbox) and target_hitbox.has_method("take_damage"):
+		# var target_hitbox = target.get_node("HitboxComponent")
+		if is_instance_valid(target) and target.has_method("take_damage"):
 			print("Attacking target: " + str(target.name))
-			target_hitbox.take_damage(attack_data)
+			target.take_damage(attack_data)
 		else:
 			print("No take_damage method found on target: " + str(target.name))	
 
