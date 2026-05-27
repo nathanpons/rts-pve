@@ -809,12 +809,6 @@ tile_set = SubResource("TileSet_iywne")
 [node name="Unit" parent="." unique_id=112693940 instance=ExtResource("3_lbhrr")]
 position = Vector2(131, 31)
 
-[node name="Unit2" parent="." unique_id=695548132 instance=ExtResource("3_lbhrr")]
-position = Vector2(101, 9)
-
-[node name="Unit3" parent="." unique_id=1695411926 instance=ExtResource("3_lbhrr")]
-position = Vector2(92, 40)
-
 [node name="BuildingMode" parent="." unique_id=989508457 instance=ExtResource("5_iywne")]
 building_area = Rect2(0, 0, 32, 32)
 
