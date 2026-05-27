@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://bct5d6j7bt7pi"]
 
-[ext_resource type="Script" uid="uid://bdc7y5mywu56f" path="res://scripts/unit_selector.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dc7fg1op1rff7" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="3_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://bke2p3o144q83" path="res://assets/sprites/hyptosis-tile-art/hyptosis_til-art-batch-2.png" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://f5u0u2pgr2yc" path="res://scenes/building_mode.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://desym5ki58atd" path="res://scenes/spawner_building.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://p52nn01mvgw7" path="res://scenes/ant_unit.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://brru0wj4mw3cy" path="res://scenes/unit_selector.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://br8srhi0spst7" path="res://scenes/beetle_unit.tscn" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbhrr"]
@@ -789,7 +789,6 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_lbhrr")
 
 [node name="Game" type="Node2D" unique_id=1393466667]
-script = ExtResource("1_lbhrr")
 
 [node name="Player" parent="." unique_id=785409035 instance=ExtResource("1_uwrxv")]
 z_index = 5
@@ -810,6 +809,7 @@ tile_set = SubResource("TileSet_iywne")
 position = Vector2(131, 31)
 
 [node name="BuildingMode" parent="." unique_id=989508457 instance=ExtResource("5_iywne")]
+visible = false
 building_area = Rect2(0, 0, 32, 32)
 
 [node name="SpawnerBuilding" parent="." unique_id=537822320 instance=ExtResource("6_p57ef")]
@@ -820,3 +820,5 @@ position = Vector2(-32, 24)
 
 [node name="BeetleUnit" parent="." unique_id=1607506571 instance=ExtResource("8_gee14")]
 position = Vector2(38, 40)
+
+[node name="UnitSelector" parent="." unique_id=697282151 instance=ExtResource("8_0tnpc")]
