@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimationPlayer.play("idle")
 		if idle_movement_timer.is_stopped():
-			print("Starting idle movement for unit %s" % self.name)
+			#print("Starting idle movement for unit %s" % self.name)
 			idle_movement()
 
 
