@@ -33,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:
+			print(selected)
 			for item in selected:
 				item.collider.target = get_global_mouse_position()
 
