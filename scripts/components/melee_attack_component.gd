@@ -64,7 +64,7 @@ func _perform_melee_attack(target_area: Area2D) -> void:
 		var attack_data = 10.0
 		# var target_hitbox = target.get_node("HitboxComponent")
 		if is_instance_valid(target) and target.has_method("take_damage"):
-			print("Attacking target: " + str(target.name))
+			print(self.get_parent().name + " Attacking target: " + str(target.get_parent().name))
 			target.take_damage(attack_data)
 		else:
 			print("No take_damage method found on target: " + str(target.name))	
