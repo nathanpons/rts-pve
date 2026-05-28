@@ -9,7 +9,6 @@ extends Node2D
 
 # Track the mouse down position for drag selection
 @export var mouse_down_pos := Vector2()
-var selected_units: Array[MyUnit]
 
 
 # Called when the node enters the scene tree for the first time.
