@@ -814,11 +814,14 @@ building_area = Rect2(0, 0, 32, 32)
 
 [node name="SpawnerBuilding" parent="." unique_id=537822320 instance=ExtResource("6_p57ef")]
 position = Vector2(-47, -56)
+team = 3
 
 [node name="AntUnit" parent="." unique_id=1256052603 instance=ExtResource("7_u5sy4")]
 position = Vector2(-32, 24)
+team = 1
 
 [node name="BeetleUnit" parent="." unique_id=1607506571 instance=ExtResource("8_gee14")]
 position = Vector2(38, 40)
+team = 2
 
 [node name="UnitSelector" parent="." unique_id=697282151 instance=ExtResource("8_0tnpc")]
