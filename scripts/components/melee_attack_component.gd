@@ -9,6 +9,7 @@ var _attack_cooldown_timer: Timer = null
 var attack_object = load("uid://bv3tc5dkx7in") # attack.gd
 var possible_targets = []
 var target: Node = null
+var team: int = 0
 
 @onready var node_name = self.get_parent().name
 @onready var attack_shape: CollisionShape2D = get_node("AttackShape")
@@ -28,18 +29,27 @@ func _ready() -> void:
 		if attack_shape.shape is CircleShape2D:
 			attack_shape.shape.radius = attack_range
 			print("Attack shape set!")
-
 	else:
 		print("Could not find attack_shape.")
 
+	# Initialize team from parent
+	if self.get_parent():
+		team = self.get_parent().team
+		print(node_name + " got set to team " + str(team))
+
 
 func _on_area_entered(area: Area2D) -> void:
+
+	# Check if on separate teams
+	if area.get_parent() and area.get_parent().team == self.team:
+		print(node_name + " is on the same team as target " + area.get_parent().name)
+		return
+
 	# Add target to possible targets
 	if not possible_targets.has(area):
 		possible_targets.append(area)
+		print(node_name + " area added to possible targets")
 
-		# Check if on separate teams
-		
 
 		# Set target
 		set_target()
@@ -86,7 +96,9 @@ func attack() -> void:
 
 
 func set_target() -> void:
-	if not possible_targets.is_empty():
+	if possible_targets.is_empty():
+		clear_target()
+	else:
 		target = possible_targets[0]
 		print("Target set to: " + str(target))
 		attack()
@@ -94,3 +106,5 @@ func set_target() -> void:
 
 func clear_target() -> void:
 	target = null
+	if not _attack_cooldown_timer.is_stopped():
+		_attack_cooldown_timer.stop()
