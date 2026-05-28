@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://b61yr77qt1fxx"]
 
 [ext_resource type="Script" uid="uid://ct8pynfb0pqkn" path="res://scripts/components/health_component.gd" id="1_a1tyf"]
+[ext_resource type="PackedScene" uid="uid://deqyhxcj4db1h" path="res://scenes/components/health_bar.tscn" id="2_at0e7"]
 
-[node name="HealthComponent" type="Node2D" unique_id=1284997372]
+[node name="HealthComponent" type="Node2D" unique_id=1284997372 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("1_a1tyf")
+health_bar = NodePath("HealthBar")
+
+[node name="HealthBar" parent="." unique_id=752087873 instance=ExtResource("2_at0e7")]
