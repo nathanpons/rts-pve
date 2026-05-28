@@ -13,7 +13,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			dragging = true
 			drag_start = get_global_mouse_position()
 			for item in selected:
-				item.collider.is_selected = false
+				if is_instance_valid(item.collider):
+					item.collider.is_selected = false
 			selected = []
 		elif dragging:
 			dragging = false
@@ -33,9 +34,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:
-			print(selected)
 			for item in selected:
-				item.collider.target = get_global_mouse_position()
+				if is_instance_valid(item.collider):
+					item.collider.target = get_global_mouse_position()
 
 
 func _draw() -> void:
