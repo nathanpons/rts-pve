@@ -64,10 +64,8 @@ func _on_area_exited(area: Area2D) -> void:
 
 
 func _on_attack_timeout() -> void:
-	print(node_name + " attack timer ran out!")
 	if not _attack_cooldown_timer:
 		_attack_cooldown_timer = Timer.new()
-	print(node_name + " setting attack timer")
 	_attack_cooldown_timer.wait_time = attack_cooldown
 	attack()
 
