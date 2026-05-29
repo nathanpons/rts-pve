@@ -1,6 +1,6 @@
 # Project Layout
 
-## Game Workflow
+## Menu Workflow
 
 ```mermaid
 graph TD
