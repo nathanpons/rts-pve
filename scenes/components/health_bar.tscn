@@ -2,7 +2,7 @@
 
 [node name="HealthBar" type="ProgressBar" unique_id=752087873]
 self_modulate = Color(0.5294118, 1, 0, 1)
-anchors_preset = -1
+z_index = 100
 offset_left = -26.0
 offset_top = -24.0
 offset_right = 27.0
