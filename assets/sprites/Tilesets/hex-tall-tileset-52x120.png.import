@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv7r61frj3l05"
-path="res://.godot/imported/hex-tileset-52x60.png-6f5b293daf78ec4f3cac55ebc038052d.ctex"
+uid="uid://ptkgfnn403xr"
+path="res://.godot/imported/hex-tall-tileset-52x120.png-902711bcd78fa68e6f8e30a29cfd8201.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/hex-tileset-52x60.png"
-dest_files=["res://.godot/imported/hex-tileset-52x60.png-6f5b293daf78ec4f3cac55ebc038052d.ctex"]
+source_file="res://assets/sprites/Tilesets/hex-tall-tileset-52x120.png"
+dest_files=["res://.godot/imported/hex-tall-tileset-52x120.png-902711bcd78fa68e6f8e30a29cfd8201.ctex"]
 
 [params]
 
