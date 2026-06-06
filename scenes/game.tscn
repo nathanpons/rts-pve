@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://p52nn01mvgw7" path="res://scenes/ant_unit.tscn" id="7_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://brru0wj4mw3cy" path="res://scenes/unit_selector.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://br8srhi0spst7" path="res://scenes/beetle_unit.tscn" id="8_gee14"]
+[ext_resource type="PackedScene" uid="uid://ioon5l4jsihq" path="res://scenes/botling_unit.tscn" id="11_kvpfn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gee14"]
 texture = ExtResource("3_lnu2h")
@@ -849,8 +850,9 @@ position = Vector2(131, 31)
 visible = false
 building_area = Rect2(0, 0, 32, 32)
 
-[node name="SpawnerBuilding" parent="." unique_id=537822320 instance=ExtResource("6_p57ef")]
+[node name="SpawnerBuildingAnt" parent="." unique_id=537822320 instance=ExtResource("6_p57ef")]
 position = Vector2(-47, -56)
+spawn_cooldown = 5.0
 team = 3
 
 [node name="AntUnit" parent="." unique_id=1256052603 instance=ExtResource("7_u5sy4")]
@@ -862,3 +864,12 @@ position = Vector2(38, 40)
 team = 2
 
 [node name="UnitSelector" parent="." unique_id=697282151 instance=ExtResource("8_0tnpc")]
+
+[node name="BotlingUnit" parent="." unique_id=1746727275 instance=ExtResource("11_kvpfn")]
+position = Vector2(148, -37)
+
+[node name="SpawnerBuildingBotling" parent="." unique_id=1794764552 instance=ExtResource("6_p57ef")]
+position = Vector2(468, -104)
+unit_scene_uid = "uid://ioon5l4jsihq"
+spawn_cooldown = 5.0
+team = 1
