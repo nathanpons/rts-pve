@@ -16,6 +16,7 @@ func _ready() -> void:
 func _on_spawn_timer_timeout() -> void:
 	var new_unit = loaded_unit.instantiate()
 	new_unit.name = self.name + "/Unit " + str(units_spawned)
+	new_unit.team = team
 	units_spawned += 1
 	get_tree().root.add_child(new_unit)
 	new_unit.global_position = $SpawnPosition.global_position
