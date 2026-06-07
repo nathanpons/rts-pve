@@ -1,8 +1,19 @@
 extends CharacterBody2D
 
-
 const SPEED = 100.0
+const MIN_ZOOM: Vector2 = Vector2(0.5, 0.5)
+const MAX_ZOOM: Vector2 = Vector2(10.0, 10.0)
+const ZOOM_INCREMENT: Vector2 = Vector2(0.1, 0.1)
+const ZOOM_SPEED: float = 20.0
+
+var target_zoom: Vector2 = Vector2(4.0, 4.0)
 # const JUMP_VELOCITY = -300.0
+
+@onready var camera: Camera2D = $PlayerCamera
+
+
+func _ready() -> void:
+	target_zoom = camera.zoom
 
 
 func _physics_process(_delta: float) -> void:
@@ -30,3 +41,18 @@ func _physics_process(_delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 
 	move_and_slide()
+
+
+func _process(delta: float) -> void:
+	camera.zoom = camera.zoom.move_toward(target_zoom, ZOOM_SPEED * delta)
+	
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("zoom_in"):
+		target_zoom += ZOOM_INCREMENT
+	elif event.is_action_pressed("zoom_out"):
+		target_zoom -= ZOOM_INCREMENT
+
+	target_zoom = target_zoom.clamp(MIN_ZOOM, MAX_ZOOM)
+
+
