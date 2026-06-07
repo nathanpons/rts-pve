@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dc7fg1op1rff7"]
 
 [ext_resource type="Script" uid="uid://wfyckfs263vi" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Bug Walk.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_g2els"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_g2els")
@@ -62,3 +62,6 @@ frame_progress = 0.42479166
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1655818767]
 position = Vector2(1, -8)
 shape = SubResource("CircleShape2D_urp6f")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=694213034]
+zoom = Vector2(4, 4)
