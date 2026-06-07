@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var unit_scene_uid = "uid://p52nn01mvgw7" # Ant unit UID
+@export var sprite_uid = "uid://bywjfwmyuqynq" # Ant hill
 @export var spawn_cooldown: float = 5.0
 @export var team: int = 0
 
@@ -8,6 +9,7 @@ var loaded_unit: PackedScene
 var units_spawned: int = 0
 
 func _ready() -> void:
+	$Sprite2D.texture = load(sprite_uid)
 	loaded_unit = load(unit_scene_uid)
 	$SpawnTimer.wait_time = spawn_cooldown
 	$SpawnTimer.start()
