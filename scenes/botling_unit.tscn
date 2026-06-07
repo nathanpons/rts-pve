@@ -53,6 +53,7 @@ attack_component = NodePath("MeleeAttackComponent")
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=1962418961]
 libraries/ = SubResource("AnimationLibrary_02cnb")
+speed_scale = 2.0
 
 [node name="Sprite2D" parent="." index="2" unique_id=2130287803]
 texture = ExtResource("2_pkuq5")
