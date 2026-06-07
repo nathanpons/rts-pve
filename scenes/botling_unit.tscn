@@ -4,15 +4,59 @@
 [ext_resource type="Texture2D" uid="uid://cal0o8du653o1" path="res://assets/sprites/Bots/botling_v1.0.0.png" id="2_pkuq5"]
 [ext_resource type="PackedScene" uid="uid://b2f1bwhadmj54" path="res://scenes/components/melee_attack_component.tscn" id="2_st1fk"]
 
+[sub_resource type="Animation" id="Animation_pkuq5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_ykx26"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_3t25u"]
+resource_name = "walkin"
+length = 0.6
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45000002),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_02cnb"]
+_data = {
+&"RESET": SubResource("Animation_pkuq5"),
+&"idle": SubResource("Animation_ykx26"),
+&"walking": SubResource("Animation_3t25u")
+}
+
 [node name="BotlingUnit" unique_id=112693940 node_paths=PackedStringArray("attack_component") instance=ExtResource("1_lvjnc")]
 faction = 1
 attack_component = NodePath("MeleeAttackComponent")
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=1962418961]
-speed_scale = 2.058
+libraries/ = SubResource("AnimationLibrary_02cnb")
 
 [node name="Sprite2D" parent="." index="2" unique_id=2130287803]
 texture = ExtResource("2_pkuq5")
 hframes = 4
+frame = 1
 
 [node name="MeleeAttackComponent" parent="." index="7" unique_id=408482409 instance=ExtResource("2_st1fk")]
