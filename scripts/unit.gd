@@ -95,6 +95,7 @@ func set_selected(value: bool):
 
 func set_target(value):
 	target = value
+	make_path()
 
 
 func avoid():
