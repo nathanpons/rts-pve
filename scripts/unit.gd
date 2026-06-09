@@ -26,37 +26,62 @@ var is_selected = false:
 var target = null:
 	set = set_target
 @onready var idle_movement_timer: Timer = $IdleMovementTimer
+@onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 func _ready() -> void:
 	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
+	nav_agent.max_speed = speed
 
 
-func _physics_process(delta: float) -> void:
-	velocity = Vector2.ZERO
-	if target != null:
-		cancel_idle_methods()
-		velocity = position.direction_to(target)
-		if position.distance_to(target) < target_radius:
-			target = null
+func _physics_process(_delta: float) -> void:
+	if target == null:
+		velocity = Vector2.ZERO
 
-	av = avoid()
-	velocity = (velocity + av * avoid_weight).normalized() * speed
-	move_and_collide(velocity * delta)
 	if velocity != Vector2.ZERO:
 		var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
-		rotation = angle
+		sprite.rotation = angle
 		$AnimationPlayer.play("walking")
 	else:
 		$AnimationPlayer.play("idle")
-		if idle_movement_timer.is_stopped():
-			#print("Starting idle movement for unit %s" % self.name)
-			idle_movement()
+		# if idle_movement_timer.is_stopped():
+		# 	idle_movement()
+
+	if nav_agent.is_navigation_finished():
+		return
+
+	if target != null:
+		cancel_idle_methods()
+		# velocity = position.direction_to(target)
+		if position.distance_to(target) < target_radius:
+			target = null
+			nav_agent.target_position = self.position
+
+	var dir = get_path_direction()
+	velocity = dir * speed
+	move_and_slide()
+	# velocity = (velocity + av * avoid_weight).normalized() * speed
+	# move_and_collide(velocity * _delta)
+
+	
 
 
 func _draw() -> void:
 	if is_selected:
 		draw_circle(Vector2.DOWN, selected_circle_radius, selected_color, false, 1.0)
+
+
+func get_path_direction() -> Vector2:
+	av = avoid()
+	return to_local(nav_agent.get_next_path_position() + av * avoid_weight).normalized()
+
+
+func make_path() -> void:
+	if target != null:
+		nav_agent.target_position = target
+	else:
+		return
 
 
 func set_selected(value: bool):
@@ -112,8 +137,10 @@ func _on_idle_movement_timeout() -> void:
 	move_to_pos_if_idle(get_random_nearby_pos())
 	idle_movement_timer.stop()
 
+
 func _on_attack_received() -> void:
 	health_component.take_damage(10)
+
 
 func cancel_idle_methods() -> void:
 	# Cancel Idle Movement
@@ -121,3 +148,7 @@ func cancel_idle_methods() -> void:
 
 
 # End Idle Movement workflow
+
+
+func _on_nav_timer_timeout() -> void:
+	make_path()

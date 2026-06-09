@@ -92,4 +92,14 @@ shape = SubResource("CircleShape2D_gic7v")
 
 [node name="IdleMovementTimer" type="Timer" parent="." unique_id=538802302]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1611366913]
+path_postprocessing = 1
+simplify_path = true
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="NavigationTimer" type="Timer" parent="." unique_id=890536677]
+
 [connection signal="timeout" from="IdleMovementTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_nav_timer_timeout"]
