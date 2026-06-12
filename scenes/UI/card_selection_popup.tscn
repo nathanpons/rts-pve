@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://kc05cxcj7ery"]
+
+[ext_resource type="PackedScene" uid="uid://c5vgfffy81040" path="res://scenes/UI/augment_card.tscn" id="1_tlyhc"]
+
+[node name="CardSelectionPopup" type="Control" unique_id=876436892]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRectBackground" type="ColorRect" parent="." unique_id=3347545]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12941177, 0.12941177, 0.12941177, 0.5568628)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=860467744]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainerTitle" type="HBoxContainer" parent="VBoxContainer" unique_id=1980391894]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerTitle" unique_id=1623036950]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Card Selection"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainerCards" type="HBoxContainer" parent="VBoxContainer" unique_id=323881594]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="AugmentCard" parent="VBoxContainer/HBoxContainerCards" unique_id=1048798965 instance=ExtResource("1_tlyhc")]
+layout_mode = 2
+
+[node name="AugmentCard2" parent="VBoxContainer/HBoxContainerCards" unique_id=1916499769 instance=ExtResource("1_tlyhc")]
+layout_mode = 2
+
+[node name="AugmentCard3" parent="VBoxContainer/HBoxContainerCards" unique_id=1335193005 instance=ExtResource("1_tlyhc")]
+layout_mode = 2
+
+[node name="HBoxContainerButtons" type="HBoxContainer" parent="VBoxContainer" unique_id=2075307950]
+layout_mode = 2
+size_flags_vertical = 3

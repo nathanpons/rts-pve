@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c5vgfffy81040"]
+
+[ext_resource type="Texture2D" uid="uid://yjmhs5350a4" path="res://icon.svg" id="1_fsl5p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3sfm"]
+bg_color = Color(0.072842635, 0.072842635, 0.07284265, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7121294, 0.7121294, 0.7121291, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[node name="AugmentCard" type="Control" unique_id=1048798965]
+layout_mode = 3
+anchor_right = 0.3
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2101750019]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=170433994]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3sfm")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Panel" unique_id=433937420]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer" unique_id=1030891306]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TextureRectIcon" type="TextureRect" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=249817301]
+modulate = Color(0.4392157, 1, 0.4745098, 1)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("1_fsl5p")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=1106645683]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelTitle" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=877650497]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="LabelDescription" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=658315883]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+autowrap_mode = 3
