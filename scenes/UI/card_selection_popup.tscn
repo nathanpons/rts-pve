@@ -51,7 +51,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="AugmentCard" parent="VBoxContainer/HBoxContainerCards" unique_id=1048798965 instance=ExtResource("1_tlyhc")]
+[node name="AugmentCard1" parent="VBoxContainer/HBoxContainerCards" unique_id=1048798965 instance=ExtResource("1_tlyhc")]
 layout_mode = 2
 
 [node name="AugmentCard2" parent="VBoxContainer/HBoxContainerCards" unique_id=1916499769 instance=ExtResource("1_tlyhc")]
