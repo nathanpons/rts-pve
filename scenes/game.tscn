@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://bct5d6j7bt7pi"]
 
+[ext_resource type="Script" uid="uid://dgjnsc6huceca" path="res://scripts/game_controller.gd" id="1_dinhu"]
 [ext_resource type="PackedScene" uid="uid://dc7fg1op1rff7" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bv7r61frj3l05" path="res://assets/sprites/Tilesets/hex-tileset-52x60.png" id="3_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="3_lbhrr"]
@@ -857,6 +858,7 @@ sources/0 = SubResource("TileSetAtlasSource_vtaks")
 sources/2 = SubResource("TileSetAtlasSource_kvpfn")
 
 [node name="Game" type="Node2D" unique_id=1393466667]
+script = ExtResource("1_dinhu")
 
 [node name="Player" parent="." unique_id=785409035 instance=ExtResource("1_uwrxv")]
 z_index = 5
