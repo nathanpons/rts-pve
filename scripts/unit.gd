@@ -16,6 +16,7 @@ enum Faction {
 @export var attack_component: Node2D
 var av = Vector2.ZERO
 var avoid_weight = 0.1
+var avoid_distance = 10
 var target_radius = 20
 var selected_color = Color(0, 1, 1, 0.25)
 var selected_circle = CollisionShape2D.new()
@@ -37,6 +38,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if target == null:
+		av = avoid()
+		if av != Vector2.ZERO:
+			nav_agent.target_position = self.position + (av * avoid_distance)
+
 		velocity = Vector2.ZERO
 
 	if velocity != Vector2.ZERO:
@@ -45,8 +50,8 @@ func _physics_process(_delta: float) -> void:
 		$AnimationPlayer.play("walking")
 	else:
 		$AnimationPlayer.play("idle")
-		# if idle_movement_timer.is_stopped():
-		# 	idle_movement()
+		if idle_movement_timer.is_stopped():
+			idle_movement()
 
 	if nav_agent.is_navigation_finished():
 		return
@@ -73,8 +78,9 @@ func _draw() -> void:
 
 
 func get_path_direction() -> Vector2:
-	av = avoid()
-	return to_local(nav_agent.get_next_path_position() + av * avoid_weight).normalized()
+	# av = avoid()
+	# return to_local(nav_agent.get_next_path_position() + av * avoid_weight).normalized()
+	return to_local(nav_agent.get_next_path_position()).normalized()
 
 
 func make_path() -> void:
