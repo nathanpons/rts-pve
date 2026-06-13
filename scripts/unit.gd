@@ -16,7 +16,7 @@ enum Faction {
 @export var attack_component: Node2D
 var av = Vector2.ZERO
 var avoid_weight = 0.1
-var avoid_distance = 10
+var avoid_distance = 15
 var target_radius = 20
 var selected_color = Color(0, 1, 1, 0.25)
 var selected_circle = CollisionShape2D.new()
