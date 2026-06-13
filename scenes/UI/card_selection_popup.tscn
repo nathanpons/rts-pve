@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://kc05cxcj7ery"]
 
+[ext_resource type="Script" uid="uid://bk34ghg63o6bx" path="res://scripts/UI/card_selection_popup.gd" id="1_f5dsg"]
 [ext_resource type="PackedScene" uid="uid://c5vgfffy81040" path="res://scenes/UI/augment_card.tscn" id="1_tlyhc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlyhc"]
@@ -14,6 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_f5dsg")
 
 [node name="Panel" type="Panel" parent="." unique_id=1342366734]
 layout_mode = 1
