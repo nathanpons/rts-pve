@@ -65,3 +65,5 @@ shape = SubResource("CircleShape2D_urp6f")
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=694213034]
 zoom = Vector2(4, 4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1416603216]

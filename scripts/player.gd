@@ -12,6 +12,7 @@ var target_zoom: Vector2 = Vector2(4.0, 4.0)
 # const JUMP_VELOCITY = -300.0
 
 @onready var camera: Camera2D = $PlayerCamera
+@onready var ui_layer: CanvasLayer = $CanvasLayer
 
 
 func _ready() -> void:
@@ -68,16 +69,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func open_card_selection_popup() -> void:
 	print("open_card_selection_popup called")
-	var game_objects = get_children()
+	var game_objects = ui_layer.get_children()
 	if "card_selection_popup" not in game_objects:
 		var card_selection_popup_instance = card_selection_popup.instantiate()
 		card_selection_popup_instance.name = "card_selection_popup"
-		add_child(card_selection_popup_instance)
+		ui_layer.add_child(card_selection_popup_instance)
 
 
 func close_card_selection_popup() -> void:
 	print("close_card_selection_popup called")
-	var game_objects = get_children()
+	var game_objects = ui_layer.get_children()
 	for child in game_objects:
 		if child.name == "card_selection_popup":
 			child.queue_free()
