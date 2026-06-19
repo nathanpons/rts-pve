@@ -25,9 +25,8 @@ func _ready() -> void:
 	upgrade_db.path = upgrade_db_path
 	upgrade_db.open_db()
 
-	create_upgrade_table()
-
 	get_canvas_layer()
+
 
 func _process(delta: float) -> void:
 	pass
@@ -44,15 +43,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 ## public methods
-func create_upgrade_table() -> void:
-	var upgrades: Dictionary = {
-		"id": "INTEGER PRIMARY KEY AUTOINCREMENT",
-		"name": "TEXT NOT NULL",
-		"description": "TEXT NOT NULL",
-		"affected_units": "TEXT",
-	}
-
-
 func get_upgrades() -> Array[Upgrade]:
 	return _owned_upgrades
 
