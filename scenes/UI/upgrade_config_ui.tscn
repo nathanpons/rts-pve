@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://bxk051a5os6m8"]
+
+[node name="UpgradeConfigUI" type="Control" unique_id=862796350]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=590040201]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=232996036]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1195291811]
+layout_mode = 2
+size_flags_stretch_ratio = 0.02
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1170813443]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Upgrade Config"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1487829727]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=1196352732]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer" unique_id=786814597]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="SelectAllUpgrades" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=711405040]
+layout_mode = 2
+text = "Select All Upgrades"
+alignment = 0
+
+[node name="SelectUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=724051516]
+layout_mode = 2
+text = "Select Upgrade"
+alignment = 0
+
+[node name="AddUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=714844337]
+layout_mode = 2
+text = "Add Upgrade"
+alignment = 0
+
+[node name="UpdateUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=412681749]
+layout_mode = 2
+text = "Update Upgrade"
+alignment = 0
+
+[node name="DeleteUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=1018568642]
+layout_mode = 2
+text = "Delete Upgrade"
+alignment = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/HBoxContainer2" unique_id=47987582]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1477247013]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=56108625]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer" unique_id=1582808257]
+layout_mode = 2
+text = "Upgrade name"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer" unique_id=1437690767]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "Example Name"
+wrap_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1422818444]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer2" unique_id=767937219]
+layout_mode = 2
+text = "Upgrade Description"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer2" unique_id=838032158]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+placeholder_text = "Example Description"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1385409641]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer3" unique_id=1398162774]
+layout_mode = 2
+text = "Affected Units (Comma Seperated)"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer3" unique_id=1487958290]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "ex. Botling, Ant"
