@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dcl3fkah3qxsi" path="res://scenes/UI/themes/alpha-theme-v1.0.0.tres" id="1_ykyvj"]
 [ext_resource type="Script" uid="uid://d072lfeb01l5o" path="res://scripts/UI/upgrade_config_ui.gd" id="2_3iyh7"]
 
-[node name="UpgradeConfigUI" type="Control" unique_id=862796350 node_paths=PackedStringArray("upgrade_name_node", "upgrade_description_node", "upgrade_affected_units_node", "upgrade_calls_function_node", "upgrade_attached_classes_node")]
+[node name="UpgradeConfigUI" type="Control" unique_id=862796350 node_paths=PackedStringArray("upgrade_name_node", "upgrade_description_node", "upgrade_affected_units_node", "upgrade_calls_function_node", "upgrade_attached_classes_node", "upgrade_row_id_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +12,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ykyvj")
 script = ExtResource("2_3iyh7")
-upgrade_name_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer/TextEdit")
-upgrade_description_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer2/TextEdit")
-upgrade_affected_units_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer3/TextEdit")
-upgrade_calls_function_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer4/TextEdit")
-upgrade_attached_classes_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer5/TextEdit")
+upgrade_name_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer/TextEdit")
+upgrade_description_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer2/TextEdit")
+upgrade_affected_units_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer3/TextEdit")
+upgrade_calls_function_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer4/TextEdit")
+upgrade_attached_classes_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer5/TextEdit")
+upgrade_row_id_node = NodePath("VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer6/TextEdit")
 
 [node name="Panel" type="Panel" parent="." unique_id=819760235]
 layout_mode = 1
@@ -62,37 +63,37 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer" unique_id=786814597]
+[node name="VBoxContainerButtons" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer" unique_id=786814597]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
-[node name="CreateTable" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=711405040]
+[node name="CreateTable" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=711405040]
 layout_mode = 2
 text = "Create Table"
 alignment = 0
 
-[node name="SelectAllUpgrades" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=408553518]
+[node name="SelectAllUpgrades" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=408553518]
 layout_mode = 2
 text = "Select All Upgrades"
 alignment = 0
 
-[node name="SelectUpgradeByName" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=724051516]
+[node name="SelectUpgradeByName" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=724051516]
 layout_mode = 2
 text = "Select Upgrade By Name"
 alignment = 0
 
-[node name="AddUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=714844337]
+[node name="AddUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=714844337]
 layout_mode = 2
 text = "Add Upgrade"
 alignment = 0
 
-[node name="UpdateUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=412681749]
+[node name="UpdateUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=412681749]
 layout_mode = 2
 text = "Update Upgrade"
 alignment = 0
 
-[node name="DeleteUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer" unique_id=1018568642]
+[node name="DeleteUpgrade" type="Button" parent="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons" unique_id=1018568642]
 layout_mode = 2
 text = "Delete Upgrade"
 alignment = 0
@@ -106,80 +107,94 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1477247013]
+[node name="VBoxContainerSelections" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2" unique_id=1477247013]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=56108625]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=56108625]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer" unique_id=1582808257]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer" unique_id=1582808257]
 layout_mode = 2
 text = "Upgrade name"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer" unique_id=1437690767]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer" unique_id=1437690767]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 placeholder_text = "Example Name"
 wrap_mode = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1422818444]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=1422818444]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer2" unique_id=767937219]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer2" unique_id=767937219]
 layout_mode = 2
 text = "Upgrade Description"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer2" unique_id=838032158]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer2" unique_id=838032158]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 placeholder_text = "Example Description"
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1385409641]
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=1385409641]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer3" unique_id=1398162774]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer3" unique_id=1398162774]
 layout_mode = 2
 text = "Affected Units (Comma Seperated)"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer3" unique_id=1487958290]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer3" unique_id=1487958290]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 placeholder_text = "ex. Botling, Ant"
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1029716917]
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=1029716917]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer4" unique_id=1203415920]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer4" unique_id=1203415920]
 layout_mode = 2
 text = "Calls Function"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer4" unique_id=703245450]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer4" unique_id=703245450]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 placeholder_text = "ex. on_choose_upgrade_blasphemer()"
 
-[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2" unique_id=1868385815]
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=1868385815]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer5" unique_id=1355489475]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer5" unique_id=1355489475]
 layout_mode = 2
 text = "Attached Classes (Comma Seperated)"
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainer2/VBoxContainer5" unique_id=1686603021]
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer5" unique_id=1686603021]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 placeholder_text = "ex. Cleric, Warlord, Tech"
 
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/CreateTable" to="." method="_on_create_table_button_down"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/SelectAllUpgrades" to="." method="_on_select_all_upgrades_button_down"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/SelectUpgradeByName" to="." method="_on_select_upgrade_button_down"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/AddUpgrade" to="." method="_on_add_upgrade_button_down"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/UpdateUpgrade" to="." method="_on_update_upgrade_button_down"]
-[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/DeleteUpgrade" to="." method="_on_delete_upgrade_button_down"]
+[node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections" unique_id=160297419]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer6" unique_id=67754177]
+layout_mode = 2
+text = "ID For Updating/Deleting Row (Get Row ID from Select)"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerSelections/VBoxContainer6" unique_id=114532007]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "ex. 1, 4, 206"
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/CreateTable" to="." method="_on_create_table_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/SelectAllUpgrades" to="." method="_on_select_all_upgrades_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/SelectUpgradeByName" to="." method="_on_select_upgrade_by_name_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/SelectUpgradeByName" to="." method="_on_select_upgrade_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/AddUpgrade" to="." method="_on_add_upgrade_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/UpdateUpgrade" to="." method="_on_update_upgrade_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainerButtons/DeleteUpgrade" to="." method="_on_delete_upgrade_button_down"]
