@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://2g1ryvhmqgq0" path="res://scenes/UI/themes/fonts/PixelOperatorHB.ttf" id="1_hqm48"]
 
 [resource]
+BoxContainer/constants/separation = 20
 Button/fonts/font = ExtResource("1_hqm48")
 Label/fonts/font = ExtResource("1_hqm48")
 TextEdit/fonts/font = ExtResource("1_hqm48")
