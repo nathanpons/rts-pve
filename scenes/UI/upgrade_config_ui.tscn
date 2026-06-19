@@ -1,7 +1,18 @@
 [gd_scene format=3 uid="uid://bxk051a5os6m8"]
 
+[ext_resource type="Theme" uid="uid://dcl3fkah3qxsi" path="res://scenes/UI/themes/alpha-theme-v1.0.0.tres" id="1_ykyvj"]
+
 [node name="UpgradeConfigUI" type="Control" unique_id=862796350]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ykyvj")
+
+[node name="Panel" type="Panel" parent="." unique_id=819760235]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

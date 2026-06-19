@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5vgfffy81040"]
 
 [ext_resource type="Script" uid="uid://coffwe1vdr448" path="res://scripts/UI/augment_card.gd" id="1_ndk0x"]
+[ext_resource type="Theme" uid="uid://dcl3fkah3qxsi" path="res://scenes/UI/themes/alpha-theme-v1.0.0.tres" id="1_vyilo"]
 [ext_resource type="Texture2D" uid="uid://cvufwgd452y83" path="res://assets/icons/jump-to-yellow.png" id="2_ndk0x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3sfm"]
@@ -25,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_vyilo")
 script = ExtResource("1_ndk0x")
 image_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/TextureRectIcon")
 title_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/LabelTitle")
@@ -81,7 +83,7 @@ custom_minimum_size = Vector2(100, 60)
 layout_mode = 2
 size_flags_vertical = 6
 size_flags_stretch_ratio = 0.3
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 32
 text = "Title"
 horizontal_alignment = 1
 autowrap_mode = 3
