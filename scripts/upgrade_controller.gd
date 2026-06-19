@@ -74,6 +74,7 @@ func open_card_selection_popup() -> void:
 		var card_selection_popup_instance = card_selection_popup.instantiate()
 		card_selection_popup_instance.name = "card_selection_popup"
 		ui_layer.add_child(card_selection_popup_instance)
+		Engine.time_scale = 0.0
 
 
 
@@ -83,6 +84,7 @@ func close_card_selection_popup() -> void:
 	for child in game_objects:
 		if child.name == "card_selection_popup":
 			child.queue_free()
+			Engine.time_scale = 1.0
 
 
 func get_canvas_layer() -> void:
