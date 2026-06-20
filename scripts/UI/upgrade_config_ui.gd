@@ -5,6 +5,7 @@ extends Node
 ## exports
 @export var upgrade_name_node: TextEdit
 @export var upgrade_description_node: TextEdit
+@export var upgrade_icon_uid_node: TextEdit
 @export var upgrade_affected_units_node: TextEdit
 @export var upgrade_calls_function_node: TextEdit
 @export var upgrade_attached_classes_node: TextEdit
@@ -36,6 +37,7 @@ func _on_create_table_button_down() -> void:
 		"id": {"data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true},
 		"name": {"data_type": "text", "not_null": true},
 		"description": {"data_type": "text", "not_null": true},
+		"icon_uid": {"data_type": "text", "not_null": true},
 		"affected_units": {"data_type": "text", "not_null": true},
 		"calls_function": {"data_type": "text", "not_null": true},
 		"classes": {"data_type": "text", "not_null": true},
@@ -56,9 +58,11 @@ func _on_delete_upgrade_button_down() -> void:
 	else:
 		print("Failed to delete upgrade")
 
+
 func _on_update_upgrade_button_down() -> void:
 	var upgrade_name = upgrade_name_node.text.strip_edges()
 	var upgrade_description = upgrade_description_node.text.strip_edges()
+	var upgrade_icon_uid = upgrade_icon_uid_node.text.strip_edges()
 	var affected_units = upgrade_affected_units_node.text.strip_edges()
 	var calls_function = upgrade_calls_function_node.text.strip_edges()
 	var classes = upgrade_attached_classes_node.text.strip_edges()
@@ -84,6 +88,8 @@ func _on_update_upgrade_button_down() -> void:
 		update_data["name"] = upgrade_name
 	if upgrade_description:
 		update_data["description"] = upgrade_description
+	if upgrade_icon_uid:
+		update_data["icon_uid"] = upgrade_icon_uid
 	if affected_units:
 		update_data["affected_units"] = affected_units
 	if calls_function:
@@ -102,9 +108,11 @@ func _on_update_upgrade_button_down() -> void:
 	else:
 		print("Failed to update upgrade.")
 
+
 func _on_add_upgrade_button_down() -> void:
 	var upgrade_name = upgrade_name_node.text.strip_edges()
 	var upgrade_description = upgrade_description_node.text.strip_edges()
+	var upgrade_icon_uid = upgrade_icon_uid_node.text.strip_edges()
 	var affected_units = upgrade_affected_units_node.text.strip_edges()
 	var calls_function = upgrade_calls_function_node.text.strip_edges()
 	var classes = upgrade_attached_classes_node.text.strip_edges()
@@ -113,6 +121,7 @@ func _on_add_upgrade_button_down() -> void:
 		upgrade_db.insert_row("upgrades", {
 			"name": upgrade_name, 
 			"description": upgrade_description, 
+			"icon_uid": upgrade_icon_uid, 
 			"affected_units": affected_units, 
 			"calls_function": calls_function,
 			"classes": classes
