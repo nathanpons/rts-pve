@@ -10,9 +10,15 @@ extends Node
 @export var upgrade_calls_function_node: TextEdit
 @export var upgrade_attached_classes_node: TextEdit
 @export var upgrade_row_id_node: TextEdit
+@export var create_view: BoxContainer
+@export var update_view: BoxContainer
+@export var delete_view: BoxContainer
+
 ## public vars
 var upgrade_db: SQLite
 var upgrade_db_path: String = "res://upgrade_data.db"
+var current_view: BoxContainer = create_view
+var table_name: String = "upgrades"
 ## private vars
 ## onready vars
 
@@ -24,7 +30,7 @@ func _ready() -> void:
 	upgrade_db.open_db()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -33,7 +39,7 @@ func _process(delta: float) -> void:
 
 ## private methods
 func _on_create_table_button_down() -> void:
-	var upgrades: Dictionary = {
+	var upgrades_data_table: Dictionary = {
 		"id": {"data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true},
 		"name": {"data_type": "text", "not_null": true},
 		"description": {"data_type": "text", "not_null": true},
@@ -42,7 +48,7 @@ func _on_create_table_button_down() -> void:
 		"calls_function": {"data_type": "text", "not_null": true},
 		"classes": {"data_type": "text", "not_null": true},
 	}
-	upgrade_db.create_table("upgrades", upgrades)
+	upgrade_db.create_table(table_name, upgrades_data_table)
 
 
 func _on_delete_upgrade_button_down() -> void:
@@ -52,7 +58,7 @@ func _on_delete_upgrade_button_down() -> void:
 		print("Please provide an ID for the upgrade to delete.")
 		return
 	
-	var did_delete = upgrade_db.delete_rows("upgrades", "id = " + row_id)
+	var did_delete = upgrade_db.delete_rows(table_name, "id = " + row_id)
 	if did_delete:
 		print("Upgrade Successfully Deleted")
 	else:
@@ -75,7 +81,7 @@ func _on_update_upgrade_button_down() -> void:
 
 	var row_exists = upgrade_db.query(
 		"SELECT CASE 
-			WHEN EXISTS (SELECT 1 FROM upgrades WHERE id = " +  row_id + ") THEN 1 
+			WHEN EXISTS (SELECT 1 FROM " + table_name + " WHERE id = " +  row_id + ") THEN 1 
 			ELSE 0 
 		END AS id_exists;"
 	)
@@ -101,7 +107,7 @@ func _on_update_upgrade_button_down() -> void:
 		print("Please fill in a field to update.")
 		return
 
-	var did_update = upgrade_db.update_rows("upgrades", "id = " + row_id, update_data)
+	var did_update = upgrade_db.update_rows(table_name, "id = " + row_id, update_data)
 
 	if did_update:
 		print("Upgrade updated successfully.")
@@ -118,7 +124,7 @@ func _on_add_upgrade_button_down() -> void:
 	var classes = upgrade_attached_classes_node.text.strip_edges()
 
 	if upgrade_name and upgrade_description and affected_units and calls_function and classes:
-		upgrade_db.insert_row("upgrades", {
+		upgrade_db.insert_row(table_name, {
 			"name": upgrade_name, 
 			"description": upgrade_description, 
 			"icon_uid": upgrade_icon_uid, 
@@ -127,18 +133,18 @@ func _on_add_upgrade_button_down() -> void:
 			"classes": classes
 		})
 	else:
-		print("Please fill in all fields.")
+		print("Please fill in all fields (except ID).")
 
 
 func _on_select_all_upgrades_button_down() -> void:
-	var all_rows: Array[Dictionary] = upgrade_db.select_rows("upgrades", "1=1", ["*"])
+	var all_rows: Array[Dictionary] = upgrade_db.select_rows(table_name, "1=1", ["*"])
 	print(all_rows)
 
 
 func _on_select_upgrade_by_name_button_down() -> void:
 	var upgrade_name = upgrade_name_node.text.strip_edges()
 	var select_condition = "name = '" + upgrade_name + "'"
-	var selected_row: Array[Dictionary] = upgrade_db.select_rows("upgrades", select_condition, ["*"])
+	var selected_row: Array[Dictionary] = upgrade_db.select_rows(table_name, select_condition, ["*"])
 	print("Upgrade Name: " + upgrade_name)
 	print(selected_row)
 
