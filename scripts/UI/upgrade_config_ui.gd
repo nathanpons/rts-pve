@@ -19,6 +19,7 @@ var upgrade_db: SQLite
 var upgrade_db_path: String = "res://upgrade_data.db"
 var current_view: BoxContainer = create_view
 var table_name: String = "upgrades"
+var upgrades_db_table = TableData.get_upgrades_table()
 ## private vars
 ## onready vars
 
@@ -39,16 +40,16 @@ func _process(_delta: float) -> void:
 
 ## private methods
 func _on_create_table_button_down() -> void:
-	var upgrades_data_table: Dictionary = {
-		"id": {"data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true},
-		"name": {"data_type": "text", "not_null": true},
-		"description": {"data_type": "text", "not_null": true},
-		"icon_uid": {"data_type": "text", "not_null": true},
-		"affected_units": {"data_type": "text", "not_null": true},
-		"calls_function": {"data_type": "text", "not_null": true},
-		"classes": {"data_type": "text", "not_null": true},
-	}
-	upgrade_db.create_table(table_name, upgrades_data_table)
+	# var upgrades_data_table: Dictionary = {
+	# 	"id": {"data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true},
+	# 	"name": {"data_type": "text", "not_null": true},
+	# 	"description": {"data_type": "text", "not_null": true},
+	# 	"icon_uid": {"data_type": "text", "not_null": true},
+	# 	"affected_units": {"data_type": "text", "not_null": true},
+	# 	"calls_function": {"data_type": "text", "not_null": true},
+	# 	"classes": {"data_type": "text", "not_null": true},
+	# }
+	upgrade_db.create_table(table_name, upgrades_db_table)
 
 
 func _on_delete_upgrade_button_down() -> void:
