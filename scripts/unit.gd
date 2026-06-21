@@ -14,6 +14,7 @@ enum Faction {
 @export var health_component: HealthComponent
 @export var hitbox_component: HitboxComponent
 @export var attack_component: Node2D
+
 var av = Vector2.ZERO
 var avoid_weight = 0.1
 var avoid_distance = 15
@@ -26,9 +27,11 @@ var is_selected = false:
 	set = set_selected
 var target = null:
 	set = set_target
+
 @onready var idle_movement_timer: Timer = $IdleMovementTimer
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 
 func _ready() -> void:
@@ -149,6 +152,10 @@ func move_to_pos_if_idle(pos: Vector2) -> void:
 		return 
 	if target == null:
 		target = pos
+
+
+func get_collision_shape() -> CollisionShape2D:
+	return collision_shape
 
 
 func _on_idle_movement_timeout() -> void:
