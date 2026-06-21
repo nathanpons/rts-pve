@@ -100,6 +100,17 @@ func set_selected(value: bool):
 
 
 func set_target(value):
+	# Check if character is within bounds
+	if NavigationServer2D.map_is_active(nav_agent.get_navigation_map()):
+		var closest_pos = NavigationServer2D.map_get_closest_point(nav_agent.get_navigation_map(), self.position)
+		var push_back_dir: Vector2 = (self.position - closest_pos).normalized()
+		var buffer_distance: float = 16.0
+		var new_pos = closest_pos + (push_back_dir * buffer_distance)
+		# If not send them to closest point
+		if closest_pos.distance_to(self.position) > 16:
+			print("OUT OF BOUNDS! Teleporting to pos: " + str(new_pos))
+			global_position = new_pos
+
 	target = value
 	make_path()
 
