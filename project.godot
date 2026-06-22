@@ -19,6 +19,10 @@ run/main_scene="uid://bct5d6j7bt7pi"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+UpgradeController="*uid://cqnlka58264kd"
+
 [display]
 
 window/stretch/mode="viewport"
