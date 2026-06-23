@@ -35,25 +35,39 @@ func set_num_cards(num_cards: int) -> void:
 
 func clear_augment_cards() -> void:
 	var children = card_container.get_children()
-	print(children)
 	for child in children:
 		if "AugmentCard" in child.name:
 			child.queue_free()
 
 
 func set_augment_cards() -> void:
-	for i in range(num_augment_cards):
+	var augment_card_num = 0
+	var upgrades = _select_random_upgrades()
+	for upgrade in upgrades:
+		augment_card_num += 1
 		var augment_card_path = ResourceUID.get_id_path(ResourceUID.text_to_id(augment_card_uid))
 		var augment_card_scene: PackedScene = load(augment_card_path)
 		var augment_card = augment_card_scene.instantiate()
-		augment_card.name = "AugmentCard" + str(i + 1)
+		augment_card.name = "AugmentCard" + str(augment_card_num)
 		card_container.add_child(augment_card)
-		augment_card.set_card_title("Test title for card " + str(i + 1))
-		augment_card.set_card_description("Test description for card " + str(i + 1))
-		augment_card.set_upgrade_id(i + 1)
+		augment_card.set_card_title(upgrade.name)
+		augment_card.set_card_description(upgrade.description)
+		augment_card.set_card_icon(upgrade.icon_uid)
+		augment_card.set_upgrade_id(upgrade.id)
 
 
 ## private methods
 func _setup_augment_cards() -> void:
 	clear_augment_cards()
 	set_augment_cards()
+
+
+func _select_random_upgrades() -> Array:
+	var selected_upgrades = []
+	var all_upgrades = UpgradeController.get_upgrades()
+	var num_upgrades = min(num_augment_cards, len(all_upgrades))
+	all_upgrades.shuffle()
+	if num_upgrades > 0:
+		selected_upgrades = all_upgrades.slice(0, num_upgrades)
+
+	return selected_upgrades
