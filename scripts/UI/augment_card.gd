@@ -11,7 +11,7 @@ extends Node
 
 ## private vars
 var _upgrade_id: int = 0
-var _card_image: Texture2D
+var _card_icon: Texture2D
 var _card_title: String = "Test Title"
 var _card_description: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 
@@ -35,12 +35,12 @@ func set_upgrade_id(id: int) -> void:
 	_upgrade_id = id
 
 
-func set_card_image(image_uid: String) -> void:
-	var image = load(image_uid)
+func set_card_icon(icon_uid: String) -> void:
+	var icon = load(icon_uid)
 	# if typeof(image) is not Texture2D:
 	# 	print("Cannot set card image. Expected type Texture2D, instead got: " + typeof(image))
-	self._card_image = image
-	image_node.texture = image
+	self._card_icon = icon
+	image_node.texture = icon
 
 
 func set_card_title(title: String) -> void:
@@ -54,7 +54,7 @@ func set_card_description(description: String) -> void:
 
 
 func set_defaults() -> void:
-	set_card_image("uid://xs6qn84uoqi8")
+	set_card_icon("uid://xs6qn84uoqi8")
 	set_card_title("Test upgrade title")
 	set_card_description("Test upgrade description")
 
