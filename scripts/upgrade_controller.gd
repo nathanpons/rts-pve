@@ -8,7 +8,7 @@ signal upgrade_selected(upgrade_id: int)
 
 ## public vars
 var upgrade_db: SQLite
-var upgrade_db_path: String = "res://data.db"
+var upgrade_db_path: String = "res://upgrade_data.db"
 var upgrade_table_name: String = "upgrades"
 var owned_upgrades_table_name: String = "owned_upgrades"
 var is_card_selection = false
@@ -52,8 +52,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 ## public methods
-func get_upgrades() -> Array[Upgrade]:
-	return _owned_upgrades
+func get_upgrades() -> Array:
+	var all_rows: Array[Dictionary] = upgrade_db.select_rows(upgrade_table_name, "1=1", ["*"])
+	return all_rows
 
 
 func get_upgrade_by_id(upgrade_id: int, table_name: String):
