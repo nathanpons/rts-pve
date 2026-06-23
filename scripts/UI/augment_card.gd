@@ -8,7 +8,9 @@ extends Node
 @export var description_node: Label
 
 ## public vars
+
 ## private vars
+var _upgrade_id: int = 0
 var _card_image: Texture2D
 var _card_title: String = "Test Title"
 var _card_description: String = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -25,6 +27,14 @@ func _process(_delta: float) -> void:
 
 
 ## public methods
+func get_upgrade_id() -> int:
+	return _upgrade_id
+
+
+func set_upgrade_id(id: int) -> void:
+	_upgrade_id = id
+
+
 func set_card_image(image_uid: String) -> void:
 	var image = load(image_uid)
 	# if typeof(image) is not Texture2D:
@@ -43,8 +53,15 @@ func set_card_description(description: String) -> void:
 	description_node.text = description
 
 
-## private methods
 func set_defaults() -> void:
 	set_card_image("uid://xs6qn84uoqi8")
-	set_card_title("gaming")
-	set_card_description("France moment")
+	set_card_title("Test upgrade title")
+	set_card_description("Test upgrade description")
+
+
+## private methods
+func _on_panel_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("select"):
+		print("Augment Clicked. Has upgrade id: " + str(get_upgrade_id()))
+		UpgradeController.upgrade_selected.emit(get_upgrade_id())
+
