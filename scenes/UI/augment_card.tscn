@@ -94,3 +94,5 @@ layout_mode = 2
 size_flags_vertical = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 autowrap_mode = 3
+
+[connection signal="gui_input" from="MarginContainer/Panel" to="." method="_on_panel_gui_input"]
