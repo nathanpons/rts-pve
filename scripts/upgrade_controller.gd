@@ -29,7 +29,7 @@ func _ready() -> void:
 	upgrade_db.open_db()
 
 	if is_instance_valid(_camera):
-		get_canvas_layer()
+		_get_canvas_layer()
 
 	upgrade_selected.connect(_on_upgrade_selected)
 
@@ -90,16 +90,9 @@ func close_card_selection_popup() -> void:
 			Engine.time_scale = 1.0
 
 
-func get_canvas_layer() -> void:
-	for child in _camera.get_children():
-		if child.name == "CanvasLayer":
-			ui_layer = child
-			return
-
-
 func set_camera(camera: Node):
 	_camera = camera
-	get_canvas_layer()
+	_get_canvas_layer()
 
 
 ## private methods
@@ -107,3 +100,11 @@ func _on_upgrade_selected(upgrade_id: int) -> void:
 	print("Upgrade Info received in upgrade controller: " + str(upgrade_id))
 	var upgrade = get_upgrade_by_id(upgrade_id, upgrade_table_name)
 	add_upgrade(upgrade)
+
+
+func _get_canvas_layer() -> void:
+	for child in _camera.get_children():
+		if child.name == "CanvasLayer":
+			ui_layer = child
+			return
+
