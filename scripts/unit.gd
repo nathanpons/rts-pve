@@ -72,8 +72,6 @@ func _physics_process(_delta: float) -> void:
 	# velocity = (velocity + av * avoid_weight).normalized() * speed
 	# move_and_collide(velocity * _delta)
 
-	
-
 
 func _draw() -> void:
 	if is_selected:

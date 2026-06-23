@@ -21,9 +21,8 @@ var _owned_upgrades: Array[Upgrade] = []
 
 ## onready vars
 
+
 ## built-in override methods
-
-
 func _ready() -> void:
 	upgrade_db = SQLite.new()
 	upgrade_db.path = upgrade_db_path
@@ -82,7 +81,6 @@ func open_card_selection_popup() -> void:
 		Engine.time_scale = 0.0
 
 
-
 func close_card_selection_popup() -> void:
 	print("close_card_selection_popup called")
 	var game_objects = ui_layer.get_children()
@@ -102,6 +100,7 @@ func get_canvas_layer() -> void:
 func set_camera(camera: Node):
 	_camera = camera
 	get_canvas_layer()
+
 
 ## private methods
 func _on_upgrade_selected(upgrade_id: int) -> void:
