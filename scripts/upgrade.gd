@@ -10,7 +10,10 @@ var id: int
 ## private vars
 var _name: String = "base upgrade name"
 var _description: String = "base upgrade description"
+var _icon_uid: String = "uid://b0nrpvouig0e0"
 var _affected_units: Array[String] = []
+var _calls_function: String = "example_function_name()"
+var _affected_classes: Array[String] = []
 
 ## onready vars
 
@@ -41,6 +44,14 @@ func set_upgrade_description(upgrade_description: String) -> void:
 	_description = upgrade_description
 
 
+func get_icon_uid() -> String:
+	return _icon_uid
+
+
+func set_icon_uid(id: String) -> void:
+	_icon_uid = id
+
+
 func get_affected_units() -> Array[String]:
 	return _affected_units
 
@@ -53,6 +64,26 @@ func add_affected_unit(unit_name: String) -> void:
 func remove_affected_unit(unit_name: String) -> void:
 	if unit_name in _affected_units:
 		_affected_units.erase(unit_name)
+
+
+func get_called_function() -> String:
+	return _calls_function
+
+
+func set_called_function(function_name: String) -> void:
+	_calls_function = function_name
+
+
+func get_affected_classes() -> Array[String]:
+	return _affected_classes
+
+
+func add_affected_class(affected_class: String) -> void:
+	_affected_classes.append(affected_class)
+
+
+func remove_affected_class(affected_class: String) -> void:
+	_affected_classes.erase(affected_class)
 
 
 ## private methods
