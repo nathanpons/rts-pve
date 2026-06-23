@@ -14,6 +14,7 @@ var target_zoom: Vector2 = Vector2(4.0, 4.0)
 
 func _ready() -> void:
 	target_zoom = camera.zoom
+	UpgradeController.set_camera(self)
 
 
 func _physics_process(_delta: float) -> void:
@@ -54,4 +55,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		target_zoom -= ZOOM_INCREMENT
 
 	target_zoom = target_zoom.clamp(MIN_ZOOM, MAX_ZOOM)
-
