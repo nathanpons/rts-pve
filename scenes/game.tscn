@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://brru0wj4mw3cy" path="res://scenes/unit_selector.tscn" id="8_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://br8srhi0spst7" path="res://scenes/beetle_unit.tscn" id="8_gee14"]
 [ext_resource type="PackedScene" uid="uid://ioon5l4jsihq" path="res://scenes/botling_unit.tscn" id="11_kvpfn"]
-[ext_resource type="PackedScene" uid="uid://c8l55s55q5q3k" path="res://scenes/upgrade_controller.tscn" id="12_dinhu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kvpfn"]
 vertices = PackedVector2Array(26, -15, 26, 15, 0, 30, -26, 15, -26, -15, 0, -30)
@@ -81,7 +80,7 @@ sources/2 = SubResource("TileSetAtlasSource_kvpfn")
 [node name="Game" type="Node2D" unique_id=1393466667]
 script = ExtResource("1_dinhu")
 
-[node name="Player" parent="." unique_id=785409035 instance=ExtResource("1_uwrxv")]
+[node name="Camera" parent="." unique_id=785409035 instance=ExtResource("1_uwrxv")]
 z_index = 5
 position = Vector2(13, -6)
 collision_layer = 0
@@ -124,6 +123,3 @@ team = 1
 
 [node name="UnitSelector" parent="." unique_id=697282151 instance=ExtResource("8_0tnpc")]
 z_index = 1000
-
-[node name="UpgradeController" parent="." unique_id=1241203684 node_paths=PackedStringArray("camera") instance=ExtResource("12_dinhu")]
-camera = NodePath("../Player")
