@@ -7,7 +7,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tlyhc"]
 bg_color = Color(0.12941177, 0.12941177, 0.12941177, 0.5568628)
 
-[node name="CardSelectionPopup" type="Control" unique_id=876436892]
+[sub_resource type="Theme" id="Theme_e778l"]
+
+[node name="CardSelectionPopup" type="Control" unique_id=876436892 node_paths=PackedStringArray("card_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,6 +20,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_q3ebb")
 script = ExtResource("1_f5dsg")
+card_container = NodePath("Panel/MarginContainer/VBoxContainer/HBoxContainerCards")
+augment_card_uid = "uid://c5vgfffy81040"
 
 [node name="Panel" type="Panel" parent="." unique_id=1342366734]
 layout_mode = 1
@@ -28,19 +32,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tlyhc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=860467744]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=764996048]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_e778l")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="HBoxContainerTitle" type="HBoxContainer" parent="VBoxContainer" unique_id=1980391894]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=860467744]
+layout_mode = 2
+
+[node name="HBoxContainerTitle" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1980391894]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerTitle" unique_id=1623036950]
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainerTitle" unique_id=1623036950]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -48,20 +61,21 @@ text = "Card Selection"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainerCards" type="HBoxContainer" parent="VBoxContainer" unique_id=323881594]
+[node name="HBoxContainerCards" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=323881594]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="AugmentCard1" parent="VBoxContainer/HBoxContainerCards" unique_id=1048798965 instance=ExtResource("1_tlyhc")]
+[node name="AugmentCard1" parent="Panel/MarginContainer/VBoxContainer/HBoxContainerCards" unique_id=1048798965 instance=ExtResource("1_tlyhc")]
 layout_mode = 2
 
-[node name="AugmentCard2" parent="VBoxContainer/HBoxContainerCards" unique_id=1916499769 instance=ExtResource("1_tlyhc")]
+[node name="AugmentCard2" parent="Panel/MarginContainer/VBoxContainer/HBoxContainerCards" unique_id=1916499769 instance=ExtResource("1_tlyhc")]
 layout_mode = 2
 
-[node name="AugmentCard3" parent="VBoxContainer/HBoxContainerCards" unique_id=1335193005 instance=ExtResource("1_tlyhc")]
+[node name="AugmentCard3" parent="Panel/MarginContainer/VBoxContainer/HBoxContainerCards" unique_id=1335193005 instance=ExtResource("1_tlyhc")]
 layout_mode = 2
 
-[node name="HBoxContainerButtons" type="HBoxContainer" parent="VBoxContainer" unique_id=2075307950]
+[node name="HBoxContainerButtons" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2075307950]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
