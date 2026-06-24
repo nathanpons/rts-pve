@@ -10,6 +10,7 @@ extends Node
 @export var upgrade_calls_function_node: TextEdit
 @export var upgrade_attached_classes_node: TextEdit
 @export var upgrade_row_id_node: TextEdit
+@export var delete_confirmation_box: ConfirmationDialog
 @export var create_view: BoxContainer
 @export var update_view: BoxContainer
 @export var delete_view: BoxContainer
@@ -53,17 +54,10 @@ func _on_create_table_button_down() -> void:
 
 
 func _on_delete_upgrade_button_down() -> void:
-	var row_id = upgrade_row_id_node.text.strip_edges()
-
-	if not row_id:
-		print("Please provide an ID for the upgrade to delete.")
+	if not delete_confirmation_box:
+		print("No confirmation box attached!")
 		return
-	
-	var did_delete = upgrade_db.delete_rows(table_name, "id = " + row_id)
-	if did_delete:
-		print("Upgrade Successfully Deleted")
-	else:
-		print("Failed to delete upgrade")
+	delete_confirmation_box.popup_centered()
 
 
 func _on_update_upgrade_button_down() -> void:
@@ -149,3 +143,20 @@ func _on_select_upgrade_by_name_button_down() -> void:
 	print("Upgrade Name: " + upgrade_name)
 	print(selected_row)
 
+
+
+func _on_confirmation_dialog_delete_confirmed() -> void:
+	var row_id = upgrade_row_id_node.text.strip_edges()
+
+	if not row_id:
+		print("Please provide an ID for the upgrade to delete.")
+		return
+	
+	var did_delete = upgrade_db.delete_rows(table_name, "id = " + row_id)
+	if did_delete:
+		print("Upgrade Successfully Deleted")
+	else:
+		print("Failed to delete upgrade")
+
+func _on_confirmation_dialog_delete_canceled() -> void:
+	pass # Replace with function body.
