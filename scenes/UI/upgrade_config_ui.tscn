@@ -196,7 +196,7 @@ text = "Calls Function"
 [node name="TextEdit" type="TextEdit" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerUpgrade/VBoxContainer5" unique_id=703245450]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-placeholder_text = "ex. on_choose_upgrade_blasphemer()"
+placeholder_text = "ex. _on_choose_upgrade_blasphemer"
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/MarginContainer2/VBoxContainerUpgrade" unique_id=1868385815]
 layout_mode = 2
