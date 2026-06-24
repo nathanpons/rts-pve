@@ -53,6 +53,9 @@ func set_augment_cards() -> void:
 		augment_card.set_card_title(upgrade.name)
 		augment_card.set_card_description(upgrade.description)
 		augment_card.set_card_icon(upgrade.icon_uid)
+		augment_card.set_card_affected_units(upgrade.affected_units)
+		augment_card.set_card_affected_classes(upgrade.classes)
+		augment_card.set_function(upgrade.calls_function)
 		augment_card.set_upgrade_id(upgrade.id)
 
 

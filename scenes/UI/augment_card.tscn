@@ -17,7 +17,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 corner_detail = 20
 
-[node name="AugmentCard" type="Control" unique_id=1048798965 node_paths=PackedStringArray("image_node", "title_node", "description_node")]
+[node name="AugmentCard" type="Control" unique_id=1048798965 node_paths=PackedStringArray("image_node", "title_node", "description_node", "affected_units_node", "affected_classes_node")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +31,8 @@ script = ExtResource("1_ndk0x")
 image_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/TextureRectIcon")
 title_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/LabelTitle")
 description_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/LabelDescription")
+affected_units_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/LabelUnits")
+affected_classes_node = NodePath("MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer/LabelClasses")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2101750019]
@@ -92,6 +94,23 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_vertical = 2
+size_flags_stretch_ratio = 2.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+autowrap_mode = 3
+
+[node name="LabelUnits" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1521833133]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.5
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+autowrap_mode = 3
+
+[node name="LabelClasses" type="Label" parent="MarginContainer/Panel/MarginContainer/VBoxContainer/VBoxContainer" unique_id=478156755]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.5
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 autowrap_mode = 3
 
