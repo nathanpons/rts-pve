@@ -57,6 +57,21 @@ func _on_delete_upgrade_button_down() -> void:
 	if not delete_confirmation_box:
 		print("No confirmation box attached!")
 		return
+
+	var row_id = upgrade_row_id_node.text.strip_edges()
+
+	if not row_id:
+		print("Please provide an ID for the upgrade to delete.")
+		return
+
+	var selected_row: Array[Dictionary] = upgrade_db.select_rows(table_name, "id = " + row_id, ["*"])
+	var selected_row_dict = selected_row[0]
+	var row_content = ""
+	for key in selected_row_dict:
+		var value = selected_row_dict[key]
+		row_content += str(key) + ": " + str(value) + "\n"
+	
+	delete_confirmation_box.dialog_text = "Are you sure you want to delete this upgrade?: \n\n" + row_content
 	delete_confirmation_box.popup_centered()
 
 
