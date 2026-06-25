@@ -8,7 +8,7 @@ enum Faction {
 	NEUTRAL, # Everything else
 }
 
-@export var speed: int = 100
+@export var speed: float = 100.0
 @export var faction: Faction
 @export var team: int = 0
 @export var health_component: HealthComponent
@@ -76,6 +76,30 @@ func _physics_process(_delta: float) -> void:
 func _draw() -> void:
 	if is_selected:
 		draw_circle(Vector2.DOWN, selected_circle_radius, selected_color, false, 1.0)
+
+
+func get_max_health() -> float:
+	return health_component.get_max_health()
+
+
+func set_max_health(new_max_health: float) -> void:
+	health_component.set_max_health(new_max_health)
+
+
+func get_speed() -> float:
+	return speed
+
+
+func set_speed(new_speed: float) -> void:
+	speed = new_speed
+
+
+func get_team() -> int:
+	return team
+
+
+func set_team(new_team: int) -> void:
+	team = new_team
 
 
 func get_path_direction() -> Vector2:
