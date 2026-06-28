@@ -5,9 +5,8 @@ extends Node
 ## consts
 ## exports
 ## public vars
-var id: int
-
 ## private vars
+var _upgrade_id: int
 var _name: String = "base upgrade name"
 var _description: String = "base upgrade description"
 var _icon_uid: String = "uid://b0nrpvouig0e0"
@@ -28,6 +27,10 @@ func _process(_delta: float) -> void:
 
 
 ## public methods
+func get_upgrade_id() -> int:
+	return _upgrade_id
+
+
 func get_upgrade_name() -> String:
 	return _name
 
