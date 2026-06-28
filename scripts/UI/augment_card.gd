@@ -92,7 +92,6 @@ func set_function(function_name: String) -> void:
 	self._function = function_name
 
 
-
 ## private methods
 func _set_defaults() -> void:
 	set_card_icon("uid://xs6qn84uoqi8")
