@@ -102,6 +102,12 @@ func _on_upgrade_selected(upgrade_id: int) -> void:
 	var upgrade = get_upgrade_by_id(upgrade_id, upgrade_table_name)
 	add_upgrade(upgrade)
 
+	var affected_units = upgrade._affected_units.split(", ")
+	for unit in affected_units:
+		unit = unit.strip_edges()
+		# TODO: check if unit is in an enum of existing units
+		
+
 
 func _get_canvas_layer() -> void:
 	for child in _camera.get_children():
