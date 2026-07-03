@@ -29,7 +29,7 @@ func set_max_health(new_max_health: float) -> void:
 func take_damage(damage_amount: float):
 	curr_health -= damage_amount
 	health_bar.value = curr_health
-	print("Health: " + str(self.health))
+	print("Health: " + str(self.curr_health))
 
 	if curr_health <= 0:
 		get_parent().queue_free()
