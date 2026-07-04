@@ -56,15 +56,15 @@ func _physics_process(_delta: float) -> void:
 		if idle_movement_timer.is_stopped():
 			idle_movement()
 
-	if nav_agent.is_navigation_finished():
-		return
-
 	if target != null:
 		cancel_idle_methods()
 		# velocity = position.direction_to(target)
 		if position.distance_to(target) < target_radius:
 			target = null
 			nav_agent.target_position = self.position
+
+	if nav_agent.is_navigation_finished():
+		return
 
 	var dir = get_path_direction()
 	velocity = dir * speed
@@ -136,8 +136,8 @@ func set_target(value):
 			print("OUT OF BOUNDS! Teleporting to pos: " + str(new_pos))
 			global_position = new_pos
 
-	target = value
-	make_path()
+		target = value
+		make_path()
 
 
 func avoid():
@@ -199,3 +199,7 @@ func cancel_idle_methods() -> void:
 
 func _on_nav_timer_timeout() -> void:
 	make_path()
+
+
+func _check_if_target_in_bounds() -> bool:
+	return false
