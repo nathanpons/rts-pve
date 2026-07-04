@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c1t43c23vkjlq"]
+
+[ext_resource type="Script" uid="uid://nge1t5ck83dg" path="res://scripts/camera.gd" id="1_cvpoc"]
+
+[node name="Camera" type="CharacterBody2D" unique_id=1764590711]
+script = ExtResource("1_cvpoc")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1233176707]
+zoom = Vector2(4, 4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=458959813]
