@@ -48,11 +48,14 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	if velocity != Vector2.ZERO:
-		var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
-		sprite.rotation = angle
-		$AnimationPlayer.play("walking")
+		_adjust_rotation_to_match_direction()
+		if $AnimationPlayer.has_animation("walking"):
+			$AnimationPlayer.play("walking")
+		elif $AnimationPlayer.has_animation("idle"):
+			$AnimationPlayer.play("idle")
 	else:
-		$AnimationPlayer.play("idle")
+		if $AnimationPlayer.has_animation("idle"):
+			$AnimationPlayer.play("idle")
 		if idle_movement_timer.is_stopped():
 			idle_movement()
 
@@ -203,3 +206,8 @@ func _on_nav_timer_timeout() -> void:
 
 func _check_if_target_in_bounds() -> bool:
 	return false
+
+
+func _adjust_rotation_to_match_direction() -> void:
+	var angle = atan2(velocity.y, velocity.x) + deg_to_rad(90)
+	sprite.rotation = angle

@@ -17,12 +17,7 @@ var team: int = 0
 
 func _ready() -> void:
 	# Attack Timer and cooldown management
-	_attack_cooldown_timer = Timer.new()
-	_attack_cooldown_timer.name = "AttackTimer"
-	add_child(_attack_cooldown_timer)
-	_attack_cooldown_timer.timeout.connect(_on_attack_timeout)
-	_attack_cooldown_timer.wait_time = attack_cooldown
-	_attack_cooldown_timer.autostart = false
+	create_attack_cooldown_timer()
 
 	# Attack shape and range
 	if attack_shape:
@@ -36,6 +31,44 @@ func _ready() -> void:
 	if self.get_parent():
 		team = self.get_parent().team
 		print(node_name + " got set to team " + str(team))
+
+
+
+func attack() -> void:
+	# Check if target is valid and in range
+	if target == null:
+		print(node_name + "'s target is null. Cancelling attack.")
+		return
+	
+	# Check if attack is on cooldown
+	if not _attack_cooldown_timer.is_stopped():
+		print(node_name + " cannot attack! Attack still on cooldown!")
+	_perform_melee_attack(target)
+
+
+func set_target() -> void:
+	if possible_targets.is_empty():
+		clear_target()
+	else:
+		target = possible_targets[0]
+		print("Target set to: " + str(target))
+		attack()
+
+
+func clear_target() -> void:
+	target = null
+	if not _attack_cooldown_timer.is_stopped():
+		_attack_cooldown_timer.stop()
+
+
+func create_attack_cooldown_timer() -> void:
+	if _attack_cooldown_timer == null:
+		_attack_cooldown_timer = Timer.new()
+		_attack_cooldown_timer.name = "AttackTimer"
+		add_child(_attack_cooldown_timer)
+		_attack_cooldown_timer.timeout.connect(_on_attack_timeout)
+		_attack_cooldown_timer.wait_time = attack_cooldown
+		_attack_cooldown_timer.autostart = false
 
 
 func _on_area_entered(area: Area2D) -> void:
@@ -65,8 +98,7 @@ func _on_area_exited(area: Area2D) -> void:
 
 func _on_attack_timeout() -> void:
 	if not _attack_cooldown_timer:
-		_attack_cooldown_timer = Timer.new()
-	_attack_cooldown_timer.wait_time = attack_cooldown
+		create_attack_cooldown_timer()
 	attack()
 
 
@@ -76,33 +108,8 @@ func _perform_melee_attack(target_area: Area2D) -> void:
 		if is_instance_valid(target) and target.has_method("take_damage"):
 			print(node_name + " is attacking target: " + str(target.get_parent().name))
 			target.take_damage(attack_data)
+			if not _attack_cooldown_timer:
+				create_attack_cooldown_timer()
 			_attack_cooldown_timer.start()
 		else:
 			print("No take_damage method found on target: " + str(target.name))	
-
-
-func attack() -> void:
-	# Check if target is valid and in range
-	if target == null:
-		print(node_name + "'s target is null. Cancelling attack.")
-		return
-	
-	# Check if attack is on cooldown
-	if not _attack_cooldown_timer.is_stopped():
-		print(node_name + " cannot attack! Attack still on cooldown!")
-	_perform_melee_attack(target)
-
-
-func set_target() -> void:
-	if possible_targets.is_empty():
-		clear_target()
-	else:
-		target = possible_targets[0]
-		print("Target set to: " + str(target))
-		attack()
-
-
-func clear_target() -> void:
-	target = null
-	if not _attack_cooldown_timer.is_stopped():
-		_attack_cooldown_timer.stop()
