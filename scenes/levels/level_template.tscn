@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2ol16aljpth4"]
+
+[ext_resource type="PackedScene" uid="uid://dc7fg1op1rff7" path="res://scenes/player.tscn" id="1_7hipx"]
+[ext_resource type="PackedScene" uid="uid://cfh14lj88ntoo" path="res://scenes/tile_map_layer_hex.tscn" id="2_gr3xe"]
+[ext_resource type="PackedScene" uid="uid://brru0wj4mw3cy" path="res://scenes/unit_selector.tscn" id="3_gr3xe"]
+
+[node name="LevelTemplate" type="Node2D" unique_id=61948078]
+
+[node name="Camera" parent="." unique_id=1158380441 instance=ExtResource("1_7hipx")]
+
+[node name="TileMapLayerHex" parent="." unique_id=688201217 instance=ExtResource("2_gr3xe")]
+tile_map_data = PackedByteArray()
+
+[node name="UnitSelector" parent="." unique_id=697282151 instance=ExtResource("3_gr3xe")]
