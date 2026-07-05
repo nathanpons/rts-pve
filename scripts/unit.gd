@@ -28,6 +28,8 @@ var is_selected = false:
 var target = null:
 	set = set_target
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var avoidance_detector: Area2D = $Detect
 @onready var idle_movement_timer: Timer = $IdleMovementTimer
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: Sprite2D = $Sprite2D
@@ -49,13 +51,13 @@ func _physics_process(_delta: float) -> void:
 
 	if velocity != Vector2.ZERO:
 		_adjust_rotation_to_match_direction()
-		if $AnimationPlayer.has_animation("walking"):
-			$AnimationPlayer.play("walking")
-		elif $AnimationPlayer.has_animation("idle"):
-			$AnimationPlayer.play("idle")
+		if animation_player.has_animation("walking"):
+			animation_player.play("walking")
+		elif animation_player.has_animation("idle"):
+			animation_player.play("idle")
 	else:
-		if $AnimationPlayer.has_animation("idle"):
-			$AnimationPlayer.play("idle")
+		if animation_player.has_animation("idle"):
+			animation_player.play("idle")
 		if idle_movement_timer.is_stopped():
 			idle_movement()
 
@@ -145,7 +147,7 @@ func set_target(value):
 
 func avoid():
 	var result = Vector2.ZERO
-	var neighbors = $Detect.get_overlapping_bodies()
+	var neighbors = avoidance_detector.get_overlapping_bodies()
 	if neighbors:
 		for neighbor in neighbors:
 			result += neighbor.position.direction_to(position)
