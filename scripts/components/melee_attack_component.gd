@@ -4,6 +4,7 @@ extends Node2D
 @export var attack_damage: int = 10
 @export var attack_range: float = 20.0
 @export var attack_cooldown: float = 1.0
+@export var _attack_detection_range: float = attack_range + 50.0
 
 var _attack_cooldown_timer: Timer = null
 var attack_object = load("uid://bv3tc5dkx7in") # attack.gd
@@ -13,6 +14,7 @@ var team: int = 0
 
 @onready var node_name = self.get_parent().name
 @onready var attack_shape: CollisionShape2D = get_node("AttackShape")
+@onready var attack_detection_range_shape: CollisionShape2D = $AttackDetectionRange/CollisionShape2D
 
 
 func _ready() -> void:
@@ -26,6 +28,11 @@ func _ready() -> void:
 			print("Attack shape set!")
 	else:
 		print("Could not find attack_shape.")
+
+	# Attack Detection Range
+	if attack_detection_range_shape and attack_detection_range_shape.shape is CircleShape2D:
+		attack_detection_range_shape.shape.radius = _attack_detection_range
+		
 
 	# Initialize team from parent
 	if self.get_parent():

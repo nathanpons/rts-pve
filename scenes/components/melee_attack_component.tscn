@@ -4,6 +4,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nqyve"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_e778l"]
+
 [node name="MeleeAttackComponent" type="Area2D" unique_id=408482409]
 collision_layer = 8
 collision_mask = 16
@@ -11,6 +13,11 @@ script = ExtResource("1_d4kwg")
 
 [node name="AttackShape" type="CollisionShape2D" parent="." unique_id=1362810769]
 shape = SubResource("CircleShape2D_nqyve")
+
+[node name="AttackDetectionRange" type="Area2D" parent="." unique_id=1906745611]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionRange" unique_id=105540726]
+shape = SubResource("CircleShape2D_e778l")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
