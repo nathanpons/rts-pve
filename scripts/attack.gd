@@ -1,5 +1,5 @@
 class_name Attack
-extends Node2D
+extends Resource
 
 enum AttackType {
 	BIOLOGICAL,
@@ -10,9 +10,9 @@ enum AttackType {
 	ICE,
 }
 
-var attack_damage: float = 1.0
-var attack_type: AttackType
+@export var attack_damage: float = 1.0
+@export var attack_type: AttackType
 
-func _init(damage: float, type: AttackType) -> void:
-	self.attack_damage = damage
-	self.attack_type = type
+func _init(_damage: float, _type: AttackType) -> void:
+	self.attack_damage = _damage
+	self.attack_type = _type
