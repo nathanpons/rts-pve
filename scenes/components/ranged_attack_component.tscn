@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bgpmks313oawl"]
+
+[ext_resource type="Script" uid="uid://cx7huc271gcav" path="res://scripts/components/ranged_attack_component.gd" id="1_yvd6x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e778l"]
+
+[node name="RangedAttackComponent" type="Node2D" unique_id=1286539593]
+script = ExtResource("1_yvd6x")
+
+[node name="AttackDetectionRange" type="Area2D" parent="." unique_id=1309704817]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionRange" unique_id=566914612]
+shape = SubResource("CircleShape2D_e778l")
