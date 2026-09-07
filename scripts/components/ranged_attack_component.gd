@@ -6,6 +6,7 @@ extends Node2D
 ## exports
 @export var attack_damage: int = 8
 @export var projectile_scene_uid: String = "uid://bso2rsgpdonym"
+@export var projectile_speed: float = 30.0
 @export var attack_range: float = 100.0
 @export var attack_cooldown: float = 1.0
 @export var _attack_detection_range: float = attack_range + 50
@@ -165,7 +166,7 @@ func _perform_ranged_attack(target_area: Area2D) -> void:
 
 	projectile.global_position = global_position
 	if projectile.has_method("setup"):
-		projectile.setup(target_area, attack_damage)
+		projectile.setup(target_area, attack_damage, projectile_speed)
 
 
 func _on_attack_detection_range_area_entered(area: Area2D) -> void:

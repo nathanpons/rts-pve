@@ -4,9 +4,9 @@ extends Node2D
 ## enums
 ## consts
 ## exports
-@export var speed: float = 30.0
 
 ## public vars
+var speed: float = 30.0
 var damage: float = 20.0
 var direction: Vector2 = Vector2.RIGHT
 var target: Node2D = null
@@ -36,7 +36,8 @@ func _physics_process(delta: float) -> void:
 		return
 
 ## public methods
-func setup(p_target: Node2D, p_damage: float) -> void:
+func setup(p_target: Node2D, p_damage: float, p_speed: float) -> void:
+	speed = p_speed
 	target = p_target
 	damage = p_damage
 
