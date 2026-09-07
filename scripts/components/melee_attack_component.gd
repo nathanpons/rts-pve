@@ -1,69 +1,67 @@
 class_name MeleeAttackComponent
 extends Node2D
 
-@export var attack_damage: int = 10
+@export var attack_damage: float = 10.0
 @export var attack_range: float = 20.0
 @export var attack_cooldown: float = 1.0
 @export var _attack_detection_range: float = attack_range + 50.0
 
 var _attack_cooldown_timer: Timer = null
-var attack_object = load("uid://bv3tc5dkx7in") # attack.gd
-var possible_targets = []
-var target: Node = null
+var possible_targets: Array[Area2D] = []
+var target: Area2D = null
 var team: int = 0
 
-@onready var node_name = self.get_parent().name
-@onready var attack_shape: CollisionShape2D = get_node("AttackShape")
+@onready var node_name: String = self.get_parent().name if get_parent() else "MeleeAttackComponent"
+@onready var attack_shape: CollisionShape2D = get_node_or_null("AttackShape")
 @onready var attack_detection_range_shape: CollisionShape2D = $AttackDetectionRange/CollisionShape2D
 
 
 func _ready() -> void:
-	# Attack Timer and cooldown management
 	create_attack_cooldown_timer()
 
-	# Attack shape and range
-	if attack_shape:
-		if attack_shape.shape is CircleShape2D:
-			attack_shape.shape.radius = attack_range
-	else:
-		print("Could not find attack_shape.")
+	# Shape configuration with unique instances
+	if attack_shape and attack_shape.shape is CircleShape2D:
+		attack_shape.shape = attack_shape.shape.duplicate()
+		attack_shape.shape.radius = attack_range
 
-	# Attack Detection Range
 	if attack_detection_range_shape and attack_detection_range_shape.shape is CircleShape2D:
+		attack_detection_range_shape.shape = attack_detection_range_shape.shape.duplicate()
 		attack_detection_range_shape.shape.radius = _attack_detection_range
-		
 
-	# Initialize team from parent
-	if self.get_parent():
-		team = self.get_parent().team
-		print(node_name + " got set to team " + str(team))
+	if get_parent() and "team" in get_parent():
+		team = get_parent().team
 
+
+func _process(_delta: float) -> void:
+	_clean_target_list()
+
+	# Continuous attack loop while holding a valid target
+	if target and _attack_cooldown_timer.is_stopped():
+		attack()
 
 
 func attack() -> void:
-	# Check if target is valid and in range
-	if target == null:
-		print(node_name + "'s target is null. Cancelling attack.")
+	if not is_instance_valid(target):
+		set_target()
 		return
-	
-	# Check if attack is on cooldown
+
 	if not _attack_cooldown_timer.is_stopped():
-		print(node_name + " cannot attack! Attack still on cooldown!")
+		return
+
 	_perform_melee_attack(target)
 
 
 func set_target() -> void:
+	_clean_target_list()
 	if possible_targets.is_empty():
 		clear_target()
 	else:
 		target = possible_targets[0]
-		print("Target set to: " + str(target))
-		attack()
 
 
 func clear_target() -> void:
 	target = null
-	if not _attack_cooldown_timer.is_stopped():
+	if _attack_cooldown_timer and not _attack_cooldown_timer.is_stopped():
 		_attack_cooldown_timer.stop()
 
 
@@ -71,50 +69,43 @@ func create_attack_cooldown_timer() -> void:
 	if _attack_cooldown_timer == null:
 		_attack_cooldown_timer = Timer.new()
 		_attack_cooldown_timer.name = "AttackTimer"
-		add_child(_attack_cooldown_timer)
-		_attack_cooldown_timer.timeout.connect(_on_attack_timeout)
+		_attack_cooldown_timer.one_shot = true # Set to one_shot so .is_stopped() works reliably
 		_attack_cooldown_timer.wait_time = attack_cooldown
-		_attack_cooldown_timer.autostart = false
+		add_child(_attack_cooldown_timer)
 
 
-func _on_area_entered(area: Area2D) -> void:
-
-	# Check if on separate teams
-	if area.get_parent() and area.get_parent().team == self.team:
-		return
-
-	# Add target to possible targets
-	if not possible_targets.has(area):
-		possible_targets.append(area)
-		print(node_name + " area added to possible targets")
-
-
-		# Set target
-		set_target()
-		print("Possible target added: " + str(possible_targets))
-
-
-func _on_area_exited(area: Area2D) -> void:
-	if (possible_targets.has(area)):
-		possible_targets.erase(area)
-		set_target()
-		print("Possible target removed: " + str(possible_targets))
-
-
-func _on_attack_timeout() -> void:
-	if not _attack_cooldown_timer:
-		create_attack_cooldown_timer()
-	attack()
+func _clean_target_list() -> void:
+	possible_targets = possible_targets.filter(func(a): return is_instance_valid(a))
+	if target and not is_instance_valid(target):
+		target = null
 
 
 func _perform_melee_attack(target_area: Area2D) -> void:
-	if target_area:
-		var attack_data = 10.0 # Temporary attack data
-		if is_instance_valid(target) and target.has_method("take_damage"):
-			print(node_name + " is attacking target: " + str(target.get_parent().name))
-			target.take_damage(attack_data)
-			if not _attack_cooldown_timer:
-				create_attack_cooldown_timer()
-			_attack_cooldown_timer.start()
-		else:
-			print("No take_damage method found on target: " + str(target.name))	
+	if not is_instance_valid(target_area):
+		return
+
+	# Check for take_damage on area first, then parent (matches projectile logic)
+	if target_area.has_method("take_damage"):
+		target_area.take_damage(attack_damage)
+		_attack_cooldown_timer.start()
+	elif target_area.get_parent() and target_area.get_parent().has_method("take_damage"):
+		target_area.get_parent().take_damage(attack_damage)
+		_attack_cooldown_timer.start()
+
+
+func _on_area_entered(area: Area2D) -> void:
+	var parent_unit = area.get_parent()
+	if parent_unit and "team" in parent_unit and parent_unit.team == self.team:
+		return
+
+	if not possible_targets.has(area):
+		possible_targets.append(area)
+		if target == null:
+			set_target()
+
+
+func _on_area_exited(area: Area2D) -> void:
+	if possible_targets.has(area):
+		possible_targets.erase(area)
+		if target == area:
+			set_target()
