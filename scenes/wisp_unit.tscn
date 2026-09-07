@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://37u0tkfl12q8" path="res://scenes/unit.tscn" id="1_om5tp"]
 [ext_resource type="Script" uid="uid://csn3pwqvregef" path="res://scripts/wisp_unit.gd" id="2_fmpe5"]
 [ext_resource type="Texture2D" uid="uid://c3rpwjick24bw" path="res://assets/sprites/Mystics/wisp.png" id="2_j14op"]
+[ext_resource type="PackedScene" uid="uid://bgpmks313oawl" path="res://scenes/components/ranged_attack_component.tscn" id="4_fmpe5"]
 
 [sub_resource type="Animation" id="Animation_om5tp"]
 length = 0.001
@@ -51,3 +52,7 @@ libraries/ = SubResource("AnimationLibrary_3p421")
 [node name="Sprite2D" parent="." index="2" unique_id=2130287803]
 texture = ExtResource("2_j14op")
 hframes = 2
+
+[node name="RangedAttackComponent" parent="." index="9" unique_id=1286539593 instance=ExtResource("4_fmpe5")]
+attack_range = 70.0
+_attack_detection_range = 100.0
