@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cx7huc271gcav" path="res://scripts/components/ranged_attack_component.gd" id="1_yvd6x"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bfu3j"]
+radius = 20.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_e778l"]
 
 [node name="RangedAttackComponent" type="Node2D" unique_id=1286539593]
@@ -9,5 +12,13 @@ script = ExtResource("1_yvd6x")
 
 [node name="AttackDetectionRange" type="Area2D" parent="." unique_id=1309704817]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionRange" unique_id=566914612]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionRange" unique_id=1385904073]
+shape = SubResource("CircleShape2D_bfu3j")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=112562474]
+
+[node name="AttackShape" type="CollisionShape2D" parent="Area2D" unique_id=566914612]
 shape = SubResource("CircleShape2D_e778l")
+
+[connection signal="area_entered" from="AttackDetectionRange" to="." method="_on_attack_detection_range_area_entered"]
+[connection signal="area_exited" from="AttackDetectionRange" to="." method="_on_attack_detection_range_area_exited"]
