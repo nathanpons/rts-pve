@@ -11,11 +11,15 @@ radius = 20.0
 script = ExtResource("1_yvd6x")
 
 [node name="AttackDetectionRange" type="Area2D" parent="." unique_id=1309704817]
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectionRange" unique_id=1385904073]
 shape = SubResource("CircleShape2D_bfu3j")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=112562474]
+collision_layer = 0
+collision_mask = 16
 
 [node name="AttackShape" type="CollisionShape2D" parent="Area2D" unique_id=566914612]
 shape = SubResource("CircleShape2D_e778l")
