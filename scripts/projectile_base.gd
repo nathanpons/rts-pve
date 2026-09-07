@@ -68,10 +68,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	var is_target = (area == target) or (area.get_parent() == target)
 	
 	if not is_target:
-		print("Projectile area entered wasn't its target. Target: " + str(target.name) if is_instance_valid(target) else "null" + " | Area: " + str(area.name))
 		return
 
-	print("Projectile hit its target!")
 
 	# 2. Check for take_damage on the area FIRST (matching your melee setup), then try parent
 	if area.has_method("take_damage"):
