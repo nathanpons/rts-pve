@@ -5,7 +5,7 @@ extends Node2D
 ## consts
 ## exports
 @export var attack_damage: int = 8
-@export var projectile_scene_uid: String = "uid://dm4ix7gwdg0ag"
+@export var projectile_scene_uid: String = "uid://bso2rsgpdonym"
 @export var attack_range: float = 100.0
 @export var attack_cooldown: float = 1.0
 @export var _attack_detection_range: float = attack_range + 50
