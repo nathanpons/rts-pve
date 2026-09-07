@@ -25,7 +25,6 @@ func _ready() -> void:
 	if attack_shape:
 		if attack_shape.shape is CircleShape2D:
 			attack_shape.shape.radius = attack_range
-			print("Attack shape set!")
 	else:
 		print("Could not find attack_shape.")
 
@@ -82,7 +81,6 @@ func _on_area_entered(area: Area2D) -> void:
 
 	# Check if on separate teams
 	if area.get_parent() and area.get_parent().team == self.team:
-		print(node_name + " is on the same team as target " + area.get_parent().name + ", Team: " + str(team))
 		return
 
 	# Add target to possible targets
