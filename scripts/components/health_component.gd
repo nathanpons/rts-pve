@@ -12,6 +12,7 @@ func _ready() -> void:
 	health_bar.min_value = min_health
 	health_bar.max_value = max_health
 	health_bar.value = curr_health
+	_update_visibility()
 
 
 func _process(_delta: float) -> void:
@@ -29,7 +30,12 @@ func set_max_health(new_max_health: float) -> void:
 func take_damage(damage_amount: float):
 	curr_health -= damage_amount
 	health_bar.value = curr_health
+	_update_visibility()
 	print("Health: " + str(self.curr_health))
 
 	if curr_health <= 0:
 		get_parent().queue_free()
+
+
+func _update_visibility() -> void:
+	visible = curr_health < max_health
