@@ -35,7 +35,6 @@ func take_damage(damage_amount: float):
 	health_bar.value = curr_health
 	health_changed.emit(curr_health)
 	_update_visibility()
-	print("Health: " + str(self.curr_health))
 
 	if curr_health <= 0:
 		get_parent().queue_free()
