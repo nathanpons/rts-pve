@@ -54,6 +54,6 @@ texture = ExtResource("2_j14op")
 hframes = 2
 
 [node name="RangedAttackComponent" parent="." index="9" unique_id=1286539593 instance=ExtResource("4_fmpe5")]
-projectile_speed = 80.0
-attack_range = 70.0
+projectile_speed = 150.0
+attack_cooldown = 0.8
 _attack_detection_range = 100.0
