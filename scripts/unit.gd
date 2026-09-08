@@ -12,6 +12,7 @@ enum Faction {
 @export var faction: Faction
 @export var team: int = 0
 @export var health_component: HealthComponent
+@export var information_component: UnitInformationComponent
 @export var hitbox_component: HitboxComponent
 @export var attack_component: Node2D
 
@@ -39,6 +40,10 @@ var target = null:
 func _ready() -> void:
 	idle_movement_timer.timeout.connect(_on_idle_movement_timeout)
 	nav_agent.max_speed = speed
+
+	if health_component and information_component:
+		health_component.health_changed.connect(information_component.update_health)
+		information_component.setup(team, speed, health_component.curr_health)
 
 
 func _physics_process(_delta: float) -> void:

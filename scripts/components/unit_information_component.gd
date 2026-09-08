@@ -21,14 +21,17 @@ extends Control
 
 ## built-in override methods
 ## public methods
-func setup(team: int, speed: float, current_health: int) ->  void:
+func setup(team: int, speed: float, current_health: float) ->  void:
+	if not is_node_ready():
+		await ready
+
 	update_team(team)
 	update_speed(speed)
 	update_health(current_health)
 
 
 func update_team(team: int) -> void:
-	team_label.text = "Team:%sd" % team
+	team_label.text = "Team:%d" % team
 	if team >= 0 and team < team_colors.size():
 		team_label.modulate = team_colors[team]
 
@@ -37,7 +40,7 @@ func update_speed(speed: float) -> void:
 	speed_label.text = "SPD:%d" % speed
 
 
-func update_health(health: int) -> void:
+func update_health(health: float) -> void:
 	health_label.text = "HP:%d" % health
 
 

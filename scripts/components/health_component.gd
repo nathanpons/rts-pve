@@ -1,6 +1,8 @@
 class_name HealthComponent
 extends Node2D
 
+signal health_changed(curr_health: float)
+
 @export var min_health: float = 0.0
 @export var max_health: float = 100.0
 @export var health_bar: ProgressBar
@@ -12,6 +14,7 @@ func _ready() -> void:
 	health_bar.min_value = min_health
 	health_bar.max_value = max_health
 	health_bar.value = curr_health
+	health_changed.emit(curr_health)
 	_update_visibility()
 
 
@@ -30,6 +33,7 @@ func set_max_health(new_max_health: float) -> void:
 func take_damage(damage_amount: float):
 	curr_health -= damage_amount
 	health_bar.value = curr_health
+	health_changed.emit(curr_health)
 	_update_visibility()
 	print("Health: " + str(self.curr_health))
 
