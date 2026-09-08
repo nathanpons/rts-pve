@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drfcxmyaseavi" path="res://assets/sprites/Large Bug/Bug Walk.png" id="2_1jvru"]
 [ext_resource type="PackedScene" uid="uid://b61yr77qt1fxx" path="res://scenes/components/health_component.tscn" id="3_gic7v"]
 [ext_resource type="PackedScene" uid="uid://853cp26fn0gi" path="res://scenes/components/hitbox_component.tscn" id="4_tb304"]
+[ext_resource type="PackedScene" uid="uid://c7y2f2y7ggyeg" path="res://scenes/components/unit_information_component.tscn" id="5_tb304"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf63s"]
 radius = 6.0
@@ -95,11 +96,17 @@ shape = SubResource("CircleShape2D_gic7v")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1611366913]
 path_postprocessing = 1
 simplify_path = true
-debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [node name="NavigationTimer" type="Timer" parent="." unique_id=890536677]
+
+[node name="UnitInformationComponent" parent="." unique_id=812409588 instance=ExtResource("5_tb304")]
+offset_left = -50.0
+offset_top = -27.0
+offset_right = 50.0
+offset_bottom = 13.0
+size_flags_vertical = 3
 
 [connection signal="timeout" from="IdleMovementTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="NavigationTimer" to="." method="_on_nav_timer_timeout"]

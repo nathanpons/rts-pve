@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://c10inyxrg2x3r"]
+
+[ext_resource type="FontFile" uid="uid://2g1ryvhmqgq0" path="res://scenes/UI/themes/fonts/PixelOperatorHB.ttf" id="1_yubiv"]
+
+[resource]
+BoxContainer/constants/separation = 2
+Button/fonts/font = ExtResource("1_yubiv")
+Label/font_sizes/font_size = 4
+Label/fonts/font = ExtResource("1_yubiv")
+TextEdit/fonts/font = ExtResource("1_yubiv")

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c7y2f2y7ggyeg"]
+
+[ext_resource type="Theme" uid="uid://c10inyxrg2x3r" path="res://scenes/UI/themes/alpha-theme-small-v1.0.tres" id="1_0uikp"]
+[ext_resource type="Script" uid="uid://cvte8qukdmboy" path="res://scripts/components/unit_information_component.gd" id="1_giju3"]
+
+[node name="UnitInformationComponent" type="Control" unique_id=812409588]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_0uikp")
+script = ExtResource("1_giju3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1770401822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -2.5
+offset_right = 77.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InfoBox" type="HBoxContainer" parent="VBoxContainer" unique_id=938481401]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TeamLabel" type="Label" parent="VBoxContainer/InfoBox" unique_id=302571362]
+layout_mode = 2
+text = "Team:{TEAM}"
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/InfoBox" unique_id=1750900529]
+layout_mode = 2
+text = "SPD:{SPEED}"
+
+[node name="HealthLabel" type="Label" parent="VBoxContainer/InfoBox" unique_id=707841744]
+layout_mode = 2
+text = "HP:{HEALTH}"
