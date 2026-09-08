@@ -24,7 +24,7 @@ var _attack_cooldown_timer: Timer = null
 ## onready vars
 @onready var node_name = self.get_parent().name
 @onready var attack_detection_range_shape: CollisionShape2D = $AttackDetectionRange/CollisionShape2D
-@onready var attack_shape: CollisionShape2D = get_node("AttackShape")
+@onready var attack_shape: CollisionShape2D = get_node("Area2D/AttackShape")
 
 ## built-in override methods
 
@@ -91,7 +91,7 @@ func set_target() -> void:
 	else:
 		target = possible_targets[0]
 		print("Target set to: " + str(target))
-		attack()
+		call_deferred("attack")
 
 
 func clear_target() -> void:
@@ -161,10 +161,14 @@ func _perform_ranged_attack(target_area: Area2D) -> void:
 		push_error("Projectile scene not loaded in RangedAttackComponent")
 		return
 	
+	call_deferred("_spawn_projectile", target_area)
+
+
+func _spawn_projectile(target_area: Area2D) -> void:
 	var projectile = projectile_scene.instantiate()
 	get_tree().current_scene.add_child(projectile)
-
 	projectile.global_position = global_position
+
 	if projectile.has_method("setup"):
 		projectile.setup(target_area, attack_damage, projectile_speed)
 
