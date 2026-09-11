@@ -10,14 +10,19 @@ var _attack_cooldown_timer: Timer = null
 var possible_targets: Array[Area2D] = []
 var target: Area2D = null
 var team: int = 0
+var node_name: String
 
-@onready var node_name: String = self.get_parent().name if get_parent() else "MeleeAttackComponent"
 @onready var attack_shape: CollisionShape2D = get_node_or_null("AttackShape")
 @onready var attack_detection_range_shape: CollisionShape2D = $AttackDetectionRange/CollisionShape2D
 
 
 func _ready() -> void:
 	create_attack_cooldown_timer()
+
+	if self.get_parent():
+		node_name = self.get_parent().name
+	else:
+		node_name = "MeleeAttackComponent"
 
 	# Shape configuration with unique instances
 	if attack_shape and attack_shape.shape is CircleShape2D:
