@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cvte8qukdmboy" path="res://scripts/components/unit_information_component.gd" id="1_giju3"]
 
 [node name="UnitInformationComponent" type="Control" unique_id=812409588]
+z_index = 50
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
