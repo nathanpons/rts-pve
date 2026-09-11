@@ -13,6 +13,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+mouse_filter = 2
 theme = ExtResource("1_0uikp")
 script = ExtResource("1_giju3")
 
